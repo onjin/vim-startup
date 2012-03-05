@@ -11,21 +11,6 @@ If you:
 This is example startup vim configuration using vundle plugin manager.
 
 
-Plugins
--------
- * gmarik/vundle - plugin manager
- * Lokaltog/vim-powerline - usefull statusline
- * scrooloose/syntastic - syntax checking
- * scrooloose/nerdtree - files manager
- * Shougo/neocomplcache - code snippets
- * vcscommand.vim - file version systems integration (git, svn, csv)
- * Shougo/neocomplcache-snippets-complete
- * Tagbar - current opened code tags (using ctags)
- * altercation/vim-colors-solarized - cool color scheme
- * ervandew/supertab - better <tab> support
- * michaeljsmith/vim-indent-object
-
-
 Installation
 ------------
 To full work you need installed:
@@ -40,6 +25,21 @@ Then you can do:
 
  * wget https://github.com/onjin/vim-startup/raw/master/vim-startup.sh
  * chmod +x ./vim-startup.sh && ./vim-startup.sh
+
+
+Plugins
+-------
+ * gmarik/vundle - plugin manager
+ * Lokaltog/vim-powerline - usefull statusline
+ * scrooloose/syntastic - syntax checking
+ * scrooloose/nerdtree - files manager
+ * Shougo/neocomplcache - code snippets
+ * vcscommand.vim - file version systems integration (git, svn, csv)
+ * Shougo/neocomplcache-snippets-complete
+ * Tagbar - current opened code tags (using ctags)
+ * altercation/vim-colors-solarized - cool color scheme
+ * ervandew/supertab - better <tab> support
+ * michaeljsmith/vim-indent-object
 
 
 Default mappings
