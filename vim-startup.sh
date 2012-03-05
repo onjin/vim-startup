@@ -33,7 +33,7 @@ mkdir -p .vim/backup
 echo " - installing vundle"
 git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 echo " - installing initial .vimrc"
-wget http://dl.dropbox.com/u/185133/tmp/.vimrc
+wget https://github.com/onjin/vim-startup/raw/master/.vimrc
 
 # install plugins using vundle plugin manager
 echo " - installing plugins (ignore warnings this time, just press <enter> 1-2 times"

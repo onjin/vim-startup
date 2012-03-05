@@ -34,5 +34,25 @@ To full work you need installed:
  * for good python syntax checking install 'sudo easy_install flake8'
 
 Then you can do:
- * wget https://github.com/onjin/vim-startup/vim-startup.sh
+ * wget https://github.com/onjin/vim-startup/raw/master/vim-startup.sh
  * chmod +x ./vim-startup.sh && ./vim-startup.sh
+
+
+Default mappings
+----------------
+ * F4 - tags list
+ * F12 - file syntax errors
+ * ctrl+p - nerd tree - file manager
+ * :sit - NERDTreeFind - find current opened file in nerdtree
+ * ctrl+k - expand snipped (f.e. type 'class<ctrl+k>...')
+
+ * ,re - edit ~/.vimrc
+ * ,rt - edit ~/.vimrc in new tab
+ * ,rc - reread ~/.vimrc
+
+ * ,bi - install vim plugins
+ * ,bu - install && update vim plugins
+ * ,bs - search new vim plugins
+ * ,bc - clean removed vim plugins
+
+ * Moving between windows: <ctrl> + jkhl
