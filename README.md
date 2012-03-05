@@ -9,11 +9,8 @@ If you:
 This is example startup vim configuration using vundle plugin manager.
 
 
-What is inside
---------------
-
-Plugins:
-
+Plugins
+-------
  * gmarik/vundle - plugin manager
  * Lokaltog/vim-powerline - usefull statusline
  * scrooloose/syntastic - syntax checking
@@ -36,6 +33,7 @@ To full work you need installed:
  * for good python syntax checking install 'sudo easy_install flake8'
 
 Then you can do:
+
  * wget https://github.com/onjin/vim-startup/raw/master/vim-startup.sh
  * chmod +x ./vim-startup.sh && ./vim-startup.sh
 
