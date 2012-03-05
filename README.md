@@ -8,7 +8,8 @@ If you:
  * have no time to find plugins for you
 
 
-This is example startup vim configuration using vundle plugin manager.
+This is example startup vim configuration using vundle plugin manager and example .vimrc file.
+This .vimrc is compilation other config files i have seen and my needs and preferences cut down to minimal but working version.
 
 
 Installation
