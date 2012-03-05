@@ -2,9 +2,11 @@ vim-startup
 ===========
 
 If you:
+
  * want to start with vim
  * have no time to learn how to configure for you
  * have no time to find plugins for you
+
 
 This is example startup vim configuration using vundle plugin manager.
 
@@ -32,7 +34,9 @@ To full work you need installed:
  * exuberant-ctags
  * for good python syntax checking install 'sudo easy_install flake8'
 
+
 Then you can do:
+
 
  * wget https://github.com/onjin/vim-startup/raw/master/vim-startup.sh
  * chmod +x ./vim-startup.sh && ./vim-startup.sh
