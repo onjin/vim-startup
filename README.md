@@ -28,6 +28,11 @@ Then you can do:
  * chmod +x ./vim-startup.sh && ./vim-startup.sh
 
 
+Script will make backup of your existing .vim && .vimrc, create basic .vim/ layout and install vundle plugin. Next vim will be runned to install plugins (you can omit .vimrc errors at this time).
+
+After installation run gvim and follow instructions in popup windows to finish installation of spell dictionaries (or disable spelling in .vimrc).
+
+
 Plugins
 -------
  * gmarik/vundle - plugin manager
