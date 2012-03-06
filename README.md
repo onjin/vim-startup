@@ -49,7 +49,7 @@ Default mappings
  * F12 - file syntax errors
  * ctrl+p - nerd tree - file manager
  * :sit - NERDTreeFind - find current opened file in nerdtree
- * ctrl+k - expand snipped (f.e. type 'class<ctrl+k>...')
+ * ctrl+k - expand snipped (f.e. type 'class(ctrl+k)...')
 
  * ,re - edit ~/.vimrc
  * ,rt - edit ~/.vimrc in new tab
@@ -60,4 +60,4 @@ Default mappings
  * ,bs - search new vim plugins
  * ,bc - clean removed vim plugins
 
- * Moving between windows: <ctrl> + jkhl
+ * Moving between windows: ctrl + jkhl
