@@ -1,6 +1,8 @@
 vim-startup
 ===========
 
+![vim startup script](http://dl.dropbox.com/u/185133/vim-startup/screenshot.jpg)
+
 If you:
 
  * want to start with vim
