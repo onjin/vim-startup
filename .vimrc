@@ -133,11 +133,12 @@ set scrolloff=1                     " Number of lines to keep above or below the
 " -------------
 "  lang
 " -------------
-if exists("+spelllang")
-  let g:spellfile_URL = 'http://ftp.vim.org/vim/runtime/spell'
-  set spelllang=en_us,pl
-  set spell
-endif
+"  Disabled by default, just uncomment and download dictionaries using gvim spelling menu
+" if exists("+spelllang")
+"   let g:spellfile_URL = 'http://ftp.vim.org/vim/runtime/spell'
+"   set spelllang=en_us,pl
+"   set spell
+" endif
 
 " ---------------
 " Behaviors
