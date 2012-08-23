@@ -287,7 +287,9 @@ function! <SID>StripTrailingWhitespaces()
 endfunction
 
 nnoremap <silent> <F3> :call <SID>StripTrailingWhitespaces()<CR>
-autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+"" default: do not do it on every buffor write
+" autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+"
 " }}
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
