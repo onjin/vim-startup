@@ -6,6 +6,8 @@ let mapleader = ","
 set nocompatible               " be iMproved
 filetype off                   " required!
 
+let g:vundle_default_git_proto='git'
+
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
@@ -98,7 +100,7 @@ set backspace=indent,eol,start " allow backspacing over everything in insert mod
 " Color
 " ---------------
 set background=dark
-colorscheme solarized
+"STAGE1:colorscheme solarized
 
 " ---------------
 " Backups

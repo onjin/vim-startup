@@ -12,6 +12,8 @@ echo ""
 echo -n "press <enter> to continue"
 read continue
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 cd ~
 
 # backup .vim & .vimrc if exists
@@ -31,18 +33,20 @@ mkdir -p .vim/backup
 
 # install vundle plugin and initial .vimrc file
 echo " - installing vundle"
-git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+git clone git://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 echo " - installing initial .vimrc"
-wget https://github.com/onjin/vim-startup/raw/master/.vimrc
+cp ${DIR}/.vimrc .
 
 # install plugins using vundle plugin manager
-echo " - installing plugins (ignore warnings this time, just press <enter> 1-2 times"
+echo " - installing plugins"
 vim +BundleInstall +qall
+
+sed -i 's/"STAGE1://' ~/.vimrc
 
 # install patched fonts for powerline
 mkdir -p ~/.fonts
 cd .fonts
-git clone https://github.com/scotu/ubuntu-mono-powerline.git
+git clone git://github.com/scotu/ubuntu-mono-powerline.git
 cd
 
 echo "startup done"
@@ -55,5 +59,4 @@ echo "ctrl+p - run nerd tree"
 echo "F4     - code tags"
 echo "F12    - code errors"
 echo "ctrl+k - run code snippets"
-echo "         f.e. type 'class<ctrl+k>some_name<ctrl+k> ect"
-
+echo "         f.e. type class<ctrl+k>some_name<ctrl+k> ect"

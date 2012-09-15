@@ -6,7 +6,7 @@ vim-startup
 If you:
 
  * want to start with vim
- * have no time to learn how to configure for you
+ * have no time to learn how to configure it for you
  * have no time to find plugins for you
 
 
@@ -30,9 +30,7 @@ Then you can do:
  * chmod +x ./vim-startup.sh && ./vim-startup.sh
 
 
-Script will make backup of your existing .vim && .vimrc, create basic .vim/ layout and install vundle plugin. Next vim will be runned to install plugins (you can omit .vimrc errors at this time).
-
-After installation run gvim and follow instructions in popup windows to finish installation of spell dictionaries (or disable spelling in .vimrc).
+Script will make backup of your existing .vim && .vimrc, create basic .vim/ layout and install vundle plugin. Next vim will be runned to install plugins.
 
 
 Plugins
@@ -56,7 +54,7 @@ Default mappings
  * F12 - file syntax errors
  * ctrl+p - nerd tree - file manager
  * :sit - NERDTreeFind - find current opened file in nerdtree
- * ctrl+k - expand snipped (f.e. type 'class(ctrl+k)...')
+ * ctrl+k - expand snipped (f.e. type 'class(ctrl+k)...(ctrl+k)...ect')
 
  * ,re - edit ~/.vimrc
  * ,rt - edit ~/.vimrc in new tab
