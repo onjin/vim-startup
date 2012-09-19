@@ -52,9 +52,11 @@ Default mappings
 ----------------
  * F4 - tags list
  * F12 - file syntax errors
- * ctrl+p - nerd tree - file manager
- * :sit - NERDTreeFind - find current opened file in nerdtree
+
  * ctrl+k - expand snipped (f.e. type 'class(ctrl+k)...(ctrl+k)...ect')
+
+ * ctrl+p - nerd tree - file manager
+ * ,sit - NERDTreeFind - find current opened file in nerdtree
 
  * ,re - edit ~/.vimrc
  * ,rt - edit ~/.vimrc in new tab
