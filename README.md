@@ -26,7 +26,8 @@ To full work you need installed:
 Then you can do:
 
 
- * wget https://github.com/onjin/vim-startup/raw/master/vim-startup.sh
+ * git clone https://github.com/onjin/vim-startup.git
+ * cd vim-startup
  * chmod +x ./vim-startup.sh && ./vim-startup.sh
 
 
