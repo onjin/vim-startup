@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Vim-startup : vim-startup" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Vim-startup</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/onjin/vim-startup">View on GitHub</a>
+
+          <h1 id="project_title">Vim-startup</h1>
+          <h2 id="project_tagline">vim-startup</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/onjin/vim-startup/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/onjin/vim-startup/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="vim-startup" class="anchor" href="#vim-startup"><span class="octicon octicon-link"></span></a>vim-startup</h1>
+
+<p><img src="http://dl.dropbox.com/u/185133/vim-startup/screenshot.jpg" alt="vim startup script"></p>
+
+<p>If you:</p>
+
+<ul>
+<li>want to start with vim</li>
+<li>have no time to learn how to configure it for you</li>
+<li>have no time to find plugins for you</li>
+</ul><p>This is example startup vim configuration using vundle plugin manager and example .vimrc file.
+This .vimrc is compilation other config files i have seen and my needs and preferences cut down to minimal but working version.</p>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>To full work you need installed:</p>
+
+<ul>
+<li>vim or vim-gtk</li>
+<li>exuberant-ctags</li>
+<li>for good python syntax checking install 'sudo easy_install flake8'</li>
+</ul><p>Then you can do:</p>
+
+<ul>
+<li>git clone <a href="https://github.com/onjin/vim-startup.git">https://github.com/onjin/vim-startup.git</a>
+</li>
+<li>cd vim-startup</li>
+<li>chmod +x ./vim-startup.sh &amp;&amp; ./vim-startup.sh</li>
+</ul><p>Script will make backup of your existing .vim &amp;&amp; .vimrc, create basic .vim/ layout and install vundle plugin. Next vim will be runned to install plugins.</p>
+
+<h2>
+<a name="plugins" class="anchor" href="#plugins"><span class="octicon octicon-link"></span></a>Plugins</h2>
+
+<ul>
+<li>gmarik/vundle - plugin manager</li>
+<li>Lokaltog/vim-powerline - usefull statusline</li>
+<li>scrooloose/syntastic - syntax checking</li>
+<li>scrooloose/nerdtree - files manager</li>
+<li>Shougo/neocomplcache - code snippets</li>
+<li>vcscommand.vim - file version systems integration (git, svn, csv)</li>
+<li>Shougo/neocomplcache-snippets-complete</li>
+<li>Tagbar - current opened code tags (using ctags)</li>
+<li>altercation/vim-colors-solarized - cool color scheme</li>
+<li>ervandew/supertab - better  support</li>
+<li>michaeljsmith/vim-indent-object</li>
+</ul><h2>
+<a name="default-mappings" class="anchor" href="#default-mappings"><span class="octicon octicon-link"></span></a>Default mappings</h2>
+
+<ul>
+<li>F4 - tags list</li>
+<li><p>F12 - file syntax errors</p></li>
+<li><p>ctrl+k - expand snipped (f.e. type 'class(ctrl+k)...(ctrl+k)...ect')</p></li>
+<li><p>ctrl+p - nerd tree - file manager</p></li>
+<li><p>,sit - NERDTreeFind - find current opened file in nerdtree</p></li>
+<li><p>,re - edit ~/.vimrc</p></li>
+<li><p>,rt - edit ~/.vimrc in new tab</p></li>
+<li><p>,rc - reread ~/.vimrc</p></li>
+<li><p>,bi - install vim plugins</p></li>
+<li><p>,bu - install &amp;&amp; update vim plugins</p></li>
+<li><p>,bs - search new vim plugins</p></li>
+<li><p>,bc - clean removed vim plugins</p></li>
+<li><p>Moving between windows: ctrl + jkhl</p></li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Vim-startup maintained by <a href="https://github.com/onjin">onjin</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-42735297-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
