@@ -6,29 +6,22 @@ let mapleader = ","
 set nocompatible               " be iMproved
 filetype off                   " required!
 
-let g:vundle_default_git_proto='git'
+if has('vim_starting')
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+call neobundle#rc(expand('~/.vim/bundle/'))
 
-" let Vundle manage Vundle
-" required!
-Bundle 'gmarik/vundle'
+" Let NeoBundle manage NeoBundle
+NeoBundleFetch 'Shougo/neobundle.vim'
 
-" github repos
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'michaeljsmith/vim-indent-object'
-Bundle 'ervandew/supertab'
-" {{
-let g:Powerline_symbols = 'fancy'
-set laststatus=2 " Always show status line
-" }}
+" Recommended to install
+" After install, turn shell ~/.vim/bundle/vimproc, (n,g)make -f your_machines_makefile
+NeoBundle 'Shougo/vimproc'
 
-Bundle 'scrooloose/syntastic'
-" {{
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+NeoBundle 'tpope/vim-fugitive' " fugitive.vim: a Git wrapper so awesome, it should be illegal
+
+NeoBundle 'scrooloose/syntastic'
 
 let g:syntastic_phpcs_disable=1
 let g:syntastic_enable_signs=1
@@ -37,30 +30,45 @@ let g:syntastic_enable_balloons = 1
 let g:syntastic_auto_jump=0
 let g:syntastic_loc_list_height=6
 let g:syntastic_quiet_warnings=0
+let g:syntastic_python_checkers=['flake8']
+let g:syntastic_python_flake8_args='--ignore=E128,E501,E127'
 
-map <F12> :w<CR>:Errors<CR>
-imap <F12> <ESC>:w<CR>:Errors<CR>
-map <C-F12> :w<CR>:ToggleErrors<CR>
-imap <C-F12> <ESC>:w<CR>:ToggleErrors<CR>
+NeoBundle 'michaeljsmith/vim-indent-object'
+NeoBundle 'Lokaltog/vim-powerline'
+" {{
+let g:Powerline_symbols = 'fancy'
+set laststatus=2 " Always show status line
 " }}
 
-Bundle 'scrooloose/nerdtree'
+" {{
+set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+" set statusline+=%{fugitive#statusline()} 
+
+" }}
+
+NeoBundle 'scrooloose/nerdtree'
 " {{
 let NERDTreeMinimalUI = 1
-nmap <C-p> :NERDTreeToggle<CR>
-nmap <Leader>sit :NERDTreeFind
 " }}
 
-Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/neocomplcache-snippets-complete'
+NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/unite.vim'
+let g:unite_source_history_yank_enable = 1
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/unite-outline'
+
 " {{
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neocomplcache_snippets_expand)
-smap <C-k>     <Plug>(neocomplcache_snippets_expand)
 
 " SuperTab like snippets behavior.
 "imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ?
 " \ "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+let g:SuperTabDefaultCompletionType = "context"
 
 " For snippet_complete marker.
 if has('conceal')
@@ -68,18 +76,52 @@ if has('conceal')
 endif
 
 " }}
-Bundle 'altercation/vim-colors-solarized'
+NeoBundle 'altercation/vim-colors-solarized'
 
 " vim-scripts
-Bundle 'vcscommand.vim'
-Bundle 'Tagbar'
-" {{
-nnoremap <silent> <F4> :TagbarOpenAutoClose<CR>
-" }}
+NeoBundle 'vcscommand.vim'
+NeoBundle 'Tagbar'
 
 "
+" Bundle 'Vimerl'
+NeoBundle 'bcnice20/go-vim'
+NeoBundle 'kchmck/vim-coffee-script'
 
+NeoBundle 'VimClojure'
+" Settings for VimClojure
+let g:vimclojure#HighlightBuiltins=1      " Highlight Clojure's builtins
+let g:vimclojure#ParenRainbow=1           " Rainbow parentheses'!
 
+NeoBundle 'jpalardy/vim-slime'
+let g:slime_target = "screen"
+
+NeoBundle 'UltiSnips'
+let g:UltiSnipsSnippetsDir="~/.vim/bundle/UltiSnips/UltiSnips/"
+let g:UltiSnipsExpandTrigger="<c-tab>"
+let g:UltiSnipsListSnippets="<c-s-tab>"
+
+NeoBundle 'Conque-Shell'
+
+NeoBundle 'davidhalter/jedi-vim'
+let g:jedi#auto_initialization = 1
+let g:jedi#goto_command = "<leader>g"
+let g:jedi#get_definition_command = "<leader>d"
+let g:jedi#use_tabs_not_buffers = 0
+let g:jedi#popup_on_dot = 0
+let g:jedi#rename_command = "<leader>r"
+let g:jedi#related_names_command = "<leader>n"
+let g:jedi#show_function_definition = "0"
+
+NeoBundle 'nathanaelkane/vim-indent-guides'
+
+NeoBundle 'mhinz/vim-startify'
+
+" require python2.7
+NeoBundle 'dbsr/vimpy'
+
+let g:vimpy_prompt_resolve = 1
+
+NeoBundle 'ervandew/supertab'
 filetype plugin indent on     " required!
 "
 " Brief help
@@ -95,12 +137,61 @@ set autoindent
 set autowrite " Automatically save before commands like :next and :make
 set backspace=indent,eol,start " allow backspacing over everything in insert mode
 
+NeoBundle 'xolox/vim-notes'
+NeoBundle 'xolox/vim-misc'
+
+:let g:notes_directories = ['~/Dropbox/Notes', '~/Dropbox/Shared.Notes']
+
+
+NeoBundle 'vim-scripts/vim-signify' " Advanced plugin for showing VCS diffs in the SignColumn
+
+NeoBundle 'python.vim--Vasiliev' " 1.17  Enhanced version of the python syntax highlighting script
+NeoBundle 'blackboard.vim' " 1.17  Enhanced version of the python syntax highlighting script
+" {{{ python-mode
+NeoBundle 'klen/python-mode'
+
+let g:pymode_lint_onfly = 0
+let g:pymode_lint_write = 1
+let g:pymode_utils_whitespaces = 0
+
+" }}}
+
+NeoBundle 'sotte/presenting.vim' " A simple tool for presenting slides in vim based on text files.
+
+" NeoBundle 'onjin/pycomplexity.vim'
+NeoBundle 'garybernhardt/pycomplexity', {'rtp': 'pycomplexity.vim/'}
+NeoBundle 'derekwyatt/vim-scala'
+" NeoBundle 'cespare/vjde' " Mirror of http://www.vim.org/scripts/script.php?script_id=1213
+
+
+
+nnoremap <silent> <F8> :Unite neobundle/update -log -wrap -auto-quit<CR>
+
 
 " ---------------
 " Color
 " ---------------
+if ! has("gui_running") 
+    set t_Co=256 
+    set guifont=monospace\ 12
+else
+    " disable menu/ect
+    set guioptions=aci
+    " Cursor preferences
+    set guifont=Anonymous\ Pro\ 12
+    " set guicursor=n-v-c:block-Cursor
+    " set guicursor+=o:hor50-Cursor
+    " set guicursor+=i-r:ver15-iCursor
+    " set guicursor+=a:blinkwait700-blinkon700-blinkoff700
+endif
+
+" colorscheme solarized
+colorscheme blackboard
 set background=dark
-"STAGE1:colorscheme solarized
+
+" python.vim-vasiliev options
+let python_highlight_space_errors=1
+let python_highlight_all=1
 
 " ---------------
 " Backups
@@ -135,19 +226,18 @@ set scrolloff=1                     " Number of lines to keep above or below the
 " -------------
 "  lang
 " -------------
-"  Disabled by default, just uncomment and download dictionaries using gvim spelling menu
-" if exists("+spelllang")
-"   let g:spellfile_URL = 'http://ftp.vim.org/vim/runtime/spell'
-"   set spelllang=en_us,pl
-"   set spell
-" endif
+if exists("+spelllang")
+  let g:spellfile_URL = 'http://ftp.vim.org/vim/runtime/spell'
+  set spelllang=en_us,pl
+  set nospell
+endif
 
 " ---------------
 " Behaviors
 " ---------------
 syntax enable
 
-set hlsearch
+set nohlsearch
 set textwidth=120
 set autoread                    " Automatically reload changes if detected
 set wildmenu                    " Turn on WiLd menu
@@ -170,27 +260,30 @@ set wildmode=longest:full,full
 set wildignore+=*~
 set winaltkeys=no
 set sidescrolloff=5             " set printoptions=paper:letter
+set ignorecase
+if &columns < 124
+    set columns=124
+endif
+set colorcolumn=80
 
 set splitbelow                  " Split windows at bottom
 set splitright
 
-" set guifont=Monaco_Linux-Powerline              " font
 
 set ts=4 sts=4 sw=4 expandtab
 set nu                          " show lines number
 set ff=unix                     " unix end of line
-" set list
-nmap <leader>l :set list!<CR>   " Shortcut to rapidly toggle `set list
-set ignorecase
+set list
+set listchars=tab:>\ ,trail:~
 
 " ---------------
 " folding
 " --------------- {{
-set foldenable                                   " Turn on folding
-set foldmethod=marker                            " Fold on the marker
-set foldlevel=100                                " Don't autofold anything (but I can still fold manually)
-set foldlevelstart=99                            " Remove folds
-set foldopen=block,hor,mark,percent,quickfix,tag " what movements open fold
+"set foldenable                                   " Turn on folding
+"set foldmethod=syntax                            " Fold on the marker
+"set foldlevel=100                                " Don't autofold anything (but I can still fold manually)
+"set foldlevelstart=99                            " Remove folds
+"set foldopen=block,hor,mark,percent,quickfix,tag " what movements open fold
 
 " ---------------
 " mouse
@@ -198,36 +291,6 @@ set foldopen=block,hor,mark,percent,quickfix,tag " what movements open fold
 set mouse=a                     " enable mouse
 set mousehide                   " Hide mouse after chars typed
 set mousemodel=popup            " the right mouse button causes a small pop-up menu to appear
-
-" ---------------
-" work with windows
-" --------------- {{
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
-" }}
-
-" ---------------
-" Switch between buffers
-" --------------- {{
-noremap <tab> :bn<CR>
-noremap <S-tab> :bp<CR>
-nmap <leader>d :bprevious<CR>:bdelete #<CR> " Close buffer
-nmap <leader>D :bufdo bd<CR>                " Close all buffers
-nnoremap <leader><leader> <C-^>             " Switch between last two buffers
-" }}
-
-" ---------------
-" move lines
-" --------------- {{
-nmap <A-j> ]e==
-nmap <A-k> [e==
-imap <A-j> <Esc>]e==i
-imap <A-k> <Esc>[e==i
-vmap <A-j> ]egv=gv
-vmap <A-k> [egv=gv
-" }}
 
 " ---------------
 " reopen file on last known position
@@ -244,34 +307,6 @@ autocmd BufReadPost *
 " }}
 
 
-" ---------------
-" easy editing .vimrc file
-" --------------- {{
-nmap <Leader>rc :source ~/.vimrc<CR>
-nmap <Leader>rt :tabnew ~/.vimrc<CR>
-nmap <Leader>re :e ~/.vimrc<CR>
-" }}
-
-
-
-" ----------------------------------------
-" Plugins
-" ----------------------------------------
-
-
-" ---------------
-" Vundle
-" --------------- {{
-nmap <Leader>bi :BundleInstall<CR>
-nmap <Leader>bs :BundleSearch<CR>
-nmap <Leader>bu :BundleInstall!<CR> " Because this also updates
-nmap <Leader>bc :BundleClean
-" }}
-
-
-" ----------------------------------------
-" Functions
-" ----------------------------------------
 
 " ---------------
 " Trailing Whitespaces
@@ -288,10 +323,7 @@ function! <SID>StripTrailingWhitespaces()
   call cursor(l, c)
 endfunction
 
-nnoremap <silent> <F3> :call <SID>StripTrailingWhitespaces()<CR>
-"" default: do not do it on every buffor write
 " autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
-"
 " }}
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
@@ -320,12 +352,6 @@ if !exists('g:neocomplcache_keyword_patterns')
 endif
 let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neocomplcache_snippets_expand)
-smap <C-k>     <Plug>(neocomplcache_snippets_expand)
-inoremap <expr><C-g>     neocomplcache#undo_completion()
-inoremap <expr><C-l>     neocomplcache#complete_common_string()
-
 
 " AutoComplPop like behavior.
 "let g:neocomplcache_enable_auto_select = 1
@@ -343,3 +369,193 @@ let g:neocomplcache_omni_patterns = {}
 endif
 "let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 "autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+set noerrorbells visualbell t_vb=
+
+" quiet pleeeeeease
+if has('autocmd')
+  autocmd GUIEnter * set visualbell t_vb=
+endif
+
+" {{ Mapping
+
+" F3        - strip trailing white spaces
+" F4        - tagbar toggle
+" Shift+F4  - unite outline
+" F5        - paste mode toggle
+" F6        - check complexity
+" F12       - errors window toggle
+" Sifth+F12 - fix pep8 errors
+"
+" ctrl+s    - run vim shell as pop
+" ctrl+p    - search files
+" <space>/  - search in files
+" <space>s  - switch buffer
+" <space>y  - yank history
+"
+" ,gs       - git status
+" ,gc       - git commit
+" ,gd       - git diff
+" ,gb       - git blame
+"
+" <ctr>+J   - switch && maximize window
+" <ctr>+K   - switch && maximize window
+"
+" <ctr>+n   - hlsearch toggle
+" ,l        - set list toggle
+"
+" ,re       - edit ~/.vimrc
+" ,rt       - open ~/.vimrc in tab
+" ,rc       - reload ~/.vimrc
+" ,rh       - edit ~/.vimrc at mapping help
+"
+" ,c        - close current buffer
+" ,wc       - write & close current buffer
+" ,d        - go previous buffer && close current
+" ,D        - close all buffers
+" ,,        - switch between last two buffers
+"
+" python-mode plugins bindings
+" K         - Show python docs (g:pymode_doc enabled)
+" <C-Space> - Rope autocomplete (g:pymode_rope enabled)
+" <C-c>g    - Rope goto definition (g:pymode_rope enabled)
+" <C-c>d    - Rope show documentation (g:pymode_rope enabled)
+" <C-c>f    - Rope find occurrences (g:pymode_rope enabled)
+" <Leader>r - Run python (g:pymode_run enabled)
+" <Leader>b - Set, unset breakpoint (g:pymode_breakpoint enabled)
+" [[        - Jump on previous class or function (normal, visual, operator modes)
+" ]]        - Jump on next class or function (normal, visual, operator modes)
+" [M        - Jump on previous class or method (normal, visual, operator modes)
+" ]M        - Jump on next class or method (normal, visual, operator modes)
+" aC C      - Select a class. Ex: vaC, daC, dC, yaC, yC, caC, cC (normal, operator modes)
+" iC        - Select inner class. Ex: viC, diC, yiC, ciC (normal, operator modes)
+" aM M      - Select a function or method. Ex: vaM, daM, dM, yaM, yM, caM, cM (normal, operator modes)
+" iM        - Select inner function or method. Ex: viM, diM, yiM, ciM (normal, operator modes)
+
+" VimShell
+nnoremap <C-s> :VimShellPop<cr>
+
+" Unite
+nnoremap <C-p> :<C-u>Unite -buffer-name=files -start-insert file_rec/async<cr>
+nnoremap <space>p :<C-u>Unite -no-split -buffer-name=files -start-insert file_rec/async<cr>
+nnoremap <space>l :<C-u>Unite -buffer-name=files -start-insert file_mru<cr>
+nnoremap <space>/ :Unite grep:.<cr>
+nnoremap <space>y :Unite history/yank<cr>
+nnoremap <space>s :Unite -quick-match buffer<cr>
+
+" git/fugitive
+nmap <Leader>gs :Gstatus<CR>
+nmap <Leader>gc :Gcommit<CR>
+nmap <Leader>gd :Gdiff<CR>
+nmap <Leader>gb :Gblame<CR>
+
+" switch and maximixe window
+set winminheight=0
+map <C-J> <C-W>j<C-W>_
+map <C-K> <C-W>k<C-W>_
+
+nnoremap <silent> <F3> :call <SID>StripTrailingWhitespaces()<CR>
+
+nnoremap <silent> <F2> :set guioptions=aegimrLtT<CR>
+nnoremap <silent> <S-F2> :set guioptions=aci<CR>
+" Tagbar
+nnoremap <silent> <F4> :TagbarOpenAutoClose<CR>
+nnoremap <silent> <S-F4> :Unite outline<CR>
+
+" pasting
+nnoremap <F5> :set invpaste paste?<Enter>
+imap <F5> <C-O><F5>
+set pastetoggle=<F5>
+
+nnoremap <silent> <F6> :Complexity<CR>
+
+" errors
+" map <F12> :w<CR>:Errors<CR>
+map <F12> :PyLint<CR>
+map <S-F12> :PyLintAuto<CR>
+imap <F12> <ESC>:w<CR>:Errors<CR>
+map <C-F12> :w<CR>:ToggleErrors<CR>
+imap <C-F12> <ESC>:w<CR>:ToggleErrors<CR>
+
+
+nmap <Leader>im :VimpyCheckLine<CR>
+
+map <silent> <C-n> :set invhlsearch<CR>
+nmap <leader>l :set list!<CR>   " Shortcut to rapidly toggle `set list
+" imap <2-LeftMouse> <C-o>:SearchNotes<CR>
+" nmap <2-LeftMouse> :SearchNotes<CR>
+
+" -------------------
+" font switcher
+" -------------------
+map <Leader>r0 :set guifont=Anonymous\ Pro\ 12<CR>
+map <Leader>r1 :set guifont=Inconsolata 12<CR>
+map <Leader>r9 :set guifont=monospace\ 12<CR>
+
+" ---------------
+" easy editing .vimrc file
+" --------------- {{
+nmap <Leader>rc :source ~/.vimrc<CR>
+nmap <Leader>rt :tabnew ~/.vimrc<CR>
+nmap <Leader>re :e ~/.vimrc<CR>
+nmap <Leader>rh :e +355 ~/.vimrc<CR>
+" }}
+" ---------------
+" Switch between buffers
+" --------------- {{
+noremap <tab> :bn<CR>
+noremap <S-tab> :bp<CR>
+nmap <leader>c :bdelete<CR> " Close current buffer
+nmap <leader>wc :write<CR>:bdelete<CR> " Write & close current buffer
+nmap <leader>d :bprevious<CR>:bdelete #<CR> " Close buffer
+nmap <leader>D :bufdo bd<CR>                " Close all buffers
+nnoremap <leader><leader> <C-^>             " Switch between last two buffers
+" }}
+
+" ---------------
+" move lines
+" --------------- {{
+nmap <A-j> ]e==
+nmap <A-k> [e==
+imap <A-j> <Esc>]e==i
+imap <A-k> <Esc>[e==i
+vmap <A-j> ]egv=gv
+vmap <A-k> [egv=gv
+" }}
+" ---------------
+" work with windows
+" --------------- {{
+" map <C-h> <C-w>h
+" map <C-j> <C-w>j
+" map <C-k> <C-w>k
+" map <C-l> <C-w>l
+" }}
+
+" Neosnippets key-mappings.
+"
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: "\<TAB>"
+
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
+
+" nerttreee 
+" nmap <C-P> :NERDTreeToggle<CR>
+" nmap <Leader>sit :NERDTreeFind<CR>
+" }} Mapping
+
+
+" search recursively upwards for the tags
+set tags=tags;/
+
+
+NeoBundleCheck
