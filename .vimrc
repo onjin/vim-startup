@@ -34,19 +34,40 @@ let g:syntastic_python_checkers=['flake8']
 let g:syntastic_python_flake8_args='--ignore=E128,E501,E127'
 
 NeoBundle 'michaeljsmith/vim-indent-object'
-NeoBundle 'Lokaltog/vim-powerline'
+" NeoBundle 'Lokaltog/vim-powerline'
 " {{
-let g:Powerline_symbols = 'fancy'
-set laststatus=2 " Always show status line
-" }}
-
-" {{
-set statusline+=%#warningmsg#
+"let g:Powerline_symbols = 'fancy'
+"set laststatus=2 " Always show status line
+"set statusline+=%#warningmsg#
 " set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-" set statusline+=%{fugitive#statusline()} 
+"set statusline+=%*
+" set statusline+=%{fugitive#statusline()}
 
 " }}
+
+" {{ airline
+NeoBundle 'bling/vim-airline'
+""""""""""""""""""""""""""""""
+" airline
+""""""""""""""""""""""""""""""
+set laststatus=2 " Always show status line
+let g:airline_theme             = 'powerlineish'
+let g:airline_enable_branch     = 1
+let g:airline_enable_syntastic  = 1
+let g:airline#extensions#tabline#enabled = 1
+
+" vim-powerline symbols
+let g:airline_left_sep          = '⮀'
+let g:airline_left_alt_sep      = '⮁'
+let g:airline_right_sep         = '⮂'
+let g:airline_right_alt_sep     = '⮃'
+let g:airline_branch_prefix     = '⭠'
+let g:airline_readonly_symbol   = '⭤'
+let g:airline_linecolumn_prefix = '⭡'
+" }} airline
+
+NeoBundle 'sjl/gundo.vim'
+nnoremap <F7> :GundoToggle<CR>
 
 NeoBundle 'scrooloose/nerdtree'
 " {{
@@ -143,7 +164,7 @@ NeoBundle 'xolox/vim-misc'
 :let g:notes_directories = ['~/Dropbox/Notes', '~/Dropbox/Shared.Notes']
 
 
-NeoBundle 'vim-scripts/vim-signify' " Advanced plugin for showing VCS diffs in the SignColumn
+"NeoBundle 'vim-scripts/vim-signify' " Advanced plugin for showing VCS diffs in the SignColumn
 
 NeoBundle 'python.vim--Vasiliev' " 1.17  Enhanced version of the python syntax highlighting script
 NeoBundle 'blackboard.vim' " 1.17  Enhanced version of the python syntax highlighting script
@@ -162,6 +183,7 @@ NeoBundle 'sotte/presenting.vim' " A simple tool for presenting slides in vim ba
 NeoBundle 'garybernhardt/pycomplexity', {'rtp': 'pycomplexity.vim/'}
 NeoBundle 'derekwyatt/vim-scala'
 " NeoBundle 'cespare/vjde' " Mirror of http://www.vim.org/scripts/script.php?script_id=1213
+NeoBundle 'plasticboy/vim-markdown' " Markdown Vim Mode
 
 
 
@@ -171,8 +193,8 @@ nnoremap <silent> <F8> :Unite neobundle/update -log -wrap -auto-quit<CR>
 " ---------------
 " Color
 " ---------------
-if ! has("gui_running") 
-    set t_Co=256 
+if ! has("gui_running")
+    set t_Co=256
     set guifont=monospace\ 12
 else
     " disable menu/ect
@@ -376,21 +398,29 @@ if has('autocmd')
   autocmd GUIEnter * set visualbell t_vb=
 endif
 
-" {{ Mapping
+" {{ Mapping Help
 
 " F3        - strip trailing white spaces
 " F4        - tagbar toggle
 " Shift+F4  - unite outline
 " F5        - paste mode toggle
 " F6        - check complexity
+" F7        - graphical undo
 " F12       - errors window toggle
-" Sifth+F12 - fix pep8 errors
+" Shift+F12 - fix pep8 errors
+"
+" Shift+F6  - guifonts Anonymous Pro 12
+" Shift+F7  - guifonts Inconsolata 12
+" Shift+F8  - guifonts monospace 12
 "
 " ctrl+s    - run vim shell as pop
 " ctrl+p    - search files
+"
+" <space>p  - search files - nosplit
 " <space>/  - search in files
 " <space>s  - switch buffer
 " <space>y  - yank history
+" <space>l  - last edited files
 "
 " ,gs       - git status
 " ,gc       - git commit
@@ -470,11 +500,12 @@ nnoremap <silent> <F6> :Complexity<CR>
 
 " errors
 " map <F12> :w<CR>:Errors<CR>
+" imap <F12> <ESC>:w<CR>:Errors<CR>
 map <F12> :PyLint<CR>
 map <S-F12> :PyLintAuto<CR>
-imap <F12> <ESC>:w<CR>:Errors<CR>
-map <C-F12> :w<CR>:ToggleErrors<CR>
-imap <C-F12> <ESC>:w<CR>:ToggleErrors<CR>
+
+"map <C-F12> :w<CR>:ToggleErrors<CR>
+"imap <C-F12> <ESC>:w<CR>:ToggleErrors<CR>
 
 
 nmap <Leader>im :VimpyCheckLine<CR>
@@ -487,9 +518,9 @@ nmap <leader>l :set list!<CR>   " Shortcut to rapidly toggle `set list
 " -------------------
 " font switcher
 " -------------------
-map <Leader>r0 :set guifont=Anonymous\ Pro\ 12<CR>
-map <Leader>r1 :set guifont=Inconsolata 12<CR>
-map <Leader>r9 :set guifont=monospace\ 12<CR>
+map <silent> <S-F6> :set guifont=Anonymous\ Pro\ 12<CR>
+map <silent> <S-F7> :set guifont=Inconsolata\ 12<CR>
+map <silent> <S-F8> :set guifont=monospace\ 12<CR>
 
 " ---------------
 " easy editing .vimrc file
@@ -497,7 +528,7 @@ map <Leader>r9 :set guifont=monospace\ 12<CR>
 nmap <Leader>rc :source ~/.vimrc<CR>
 nmap <Leader>rt :tabnew ~/.vimrc<CR>
 nmap <Leader>re :e ~/.vimrc<CR>
-nmap <Leader>rh :e +355 ~/.vimrc<CR>
+nmap <Leader>rh :e +379 ~/.vimrc<CR>
 " }}
 " ---------------
 " Switch between buffers
@@ -548,7 +579,7 @@ if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
 
-" nerttreee 
+" nerttreee
 " nmap <C-P> :NERDTreeToggle<CR>
 " nmap <Leader>sit :NERDTreeFind<CR>
 " }} Mapping
