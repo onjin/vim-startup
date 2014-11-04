@@ -42,9 +42,14 @@ To full work you need installed:
     wget https://github.com/onjin/vim-startup/raw/master/fonts/Anonymous%20Pro.ttf -O ~/.fonts/Anonymous\ Pro.ttf
     wget https://github.com/onjin/vim-startup/raw/master/fonts/Inconsolata.otf -O ~/.fonts/Inconsolata.otf
 
-    # run vim
+    # compile vimproc
 
-    gvim
+    cd ~/.vim/bundle/vimproc/ && make -f make_unix.mak && cd ~
+
+    # run vim or gvim
+    vim
+
+    # answer `y` to question for install plugins
 ````
 
 Help
