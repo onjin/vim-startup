@@ -108,9 +108,9 @@ install() {
 
     init_neobundle
 
-    /usr/bin/env vim +NeoBundleInstall
+    # /usr/bin/env vim +NeoBundleInstall
     info ""
-    info "vim-startup installed"
+    info "vim-startup installed; run vim to install plugins"
 }
 upgrade() {
     upgrade_repo
