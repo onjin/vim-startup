@@ -23,28 +23,8 @@ To full work you need installed:
  * for good python syntax checking install 'sudo easy_install flake8'
 
 ```bash
-    # initial dirs
 
-    mkdir -p ~/.vim/backup
-    mkdir -p ~/.vim/bundle
-
-    # plugin manager
-
-    git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
-
-    # get .vimrc
-
-    wget https://raw.github.com/onjin/vim-startup/master/.vimrc -O ~/.vimrc
-
-    # vim fonts
-
-    mkdir -p ~/.fonts
-    wget https://github.com/onjin/vim-startup/raw/master/fonts/Anonymous%20Pro.ttf -O ~/.fonts/Anonymous\ Pro.ttf
-    wget https://github.com/onjin/vim-startup/raw/master/fonts/Inconsolata.otf -O ~/.fonts/Inconsolata.otf
-
-    # compile vimproc
-
-    cd ~/.vim/bundle/vimproc/ && make -f make_unix.mak && cd ~
+    curl https://raw.githubusercontent.com/onjin/vim-startup/master/startup.sh |s
 
     # run vim or gvim
     vim
