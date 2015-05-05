@@ -22,15 +22,25 @@ To full work you need installed:
  * exuberant-ctags
  * for good python syntax checking install 'sudo easy_install flake8'
 
+Installation script:
+
 ```bash
 
-    curl https://raw.githubusercontent.com/onjin/vim-startup/master/startup.sh |s
+    curl https://raw.githubusercontent.com/onjin/vim-startup/master/startup.sh | sh
 
     # run vim or gvim
     vim
 
     # answer `y` to question for install plugins
-````
+```
+
+
+Upgrade:
+
+```bash
+   cd ~/.vim-startup
+   ./startup.sh upgrade
+```
 
 Help
 ----
