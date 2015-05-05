@@ -61,8 +61,7 @@ backup_vim_config() {
 
 init_neobundle() {
     info " - installing neobundle"
-    curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh
-    ret=$?
+    curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh > /dev/null
 }
 
 create_symlinks() {
@@ -109,7 +108,9 @@ install() {
 
     init_neobundle
 
-    info "vim-startup installed - run vim/gvim in order to install plugins"
+    /usr/bin/env vim +NeoBundleInstall
+    info ""
+    info "vim-startup installed"
 }
 upgrade() {
     upgrade_repo
@@ -140,6 +141,13 @@ case ${ACTION} in
     help)
         echo "Usage: $0 <cmd>"
         echo "available commands: install, upgrade, install_fonts"
+        ;;
+    uninstall)
+        rm -f ~/.vimrc
+        rm -f ~/.vimrc.bundles
+        rm -rf ~/.vim
+        rm -rf ${VIM_STARTUP_HOME}
+        echo 'vim-startup uninstalled'
         ;;
     *)
         install

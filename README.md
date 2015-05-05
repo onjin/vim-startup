@@ -10,8 +10,8 @@ If you:
  * have no time to find plugins for you
 
 
-This is example startup vim configuration using vundle plugin manager and example .vimrc file.
-This .vimrc is compilation other config files i have seen and my needs and preferences cut down to minimal but working version.
+*vim-startup* installs at ~/.vim-startup and you can extend it without modification using *~/.vimrc.before*,
+*~/vimrc.bundles.local* and *~/.vimrc.local* files.
 
 
 Installation
@@ -26,7 +26,7 @@ Installation script:
 
 ```bash
 
-    curl https://raw.githubusercontent.com/onjin/vim-startup/master/startup.sh | sh
+    curl https://raw.githubusercontent.com/onjin/vim-startup/master/startup.sh | bash
 
     # run vim or gvim
     vim
