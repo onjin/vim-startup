@@ -10,8 +10,8 @@ If you:
  * have no time to find plugins for you
 
 
-*vim-startup* installs at ~/.vim-startup and you can extend it without modification using *~/.vimrc.before*,
-*~/vimrc.bundles.local* and *~/.vimrc.local* files.
+**vim-startup** installs at ~/.vim-startup and you can extend it without modification using **~/.vimrc.before**,
+**~/vimrc.bundles.local** and **~/.vimrc.local** files.
 
 
 Installation
