@@ -26,11 +26,15 @@ isinstalled() {
     fi
 }
 
-init_upgrade_repo() {
+upgrade_repo() {
     if [ -e ${VIM_STARTUP_HOME} ]; then
         info " - upgrading ${VIM_STARTUP_HOME}"
         cd ${VIM_STARTUP_HOME} && git pull origin master
-    else
+    fi
+}
+
+init_repo() {
+    if [ !  -e ${VIM_STARTUP_HOME} ]; then
         info " - init ${VIM_STARTUP_HOME}"
         git clone --recursive ${VIM_STARTUP_REPO} ${VIM_STARTUP_HOME}
     fi
@@ -91,29 +95,54 @@ compile_vimproc() {
 init_backup() {
     mkdir -p ~/.vim/backup
 }
+
+install() {
+    if [ -e ${VIM_STARTUP_HOME} ]; then
+        info "vim-startup already installed; run '$0 upgrade' to upgrade"
+        exit 0
+    fi
+
+    init_repo
+
+    backup_vim_config
+
+    install_fonts
+    create_symlinks
+    init_backup
+
+    touch ${HOME}/.vimrc.local
+
+    init_neobundle
+    compile_vimproc
+
+    info "vim-startup installed - run vim/gvim in order to install plugins"
+}
+upgrade() {
+    upgrade_repo
+    info "vim-startup upgraded - run vim/gvim in order to install plugins"
+}
 # functions }}}
 
 # main {{{
 
-info "Installing 'vim-startup'"
+info "vim-startup installer"
+info "---------------------"
+info ""
+
+ACTION=${1-install}
+case ${ACTION} in
+    install)
+        install
+        ;;
+    upgrade)
+        upgrade
+        ;;
+    *)
+        install
+esac
 
 isinstalled "vim"
 isinstalled "git"
-
-init_upgrade_repo
-
-backup_vim_config
-
-install_fonts
-create_symlinks
-init_backup
-
-touch ${HOME}/.vimrc.local
-
-init_neobundle
-compile_vimproc
-
-info "vim-startup installed - run vim/gvim in order to install plugins"
 info "read more at ${VIM_STARTUP_REPO}"
 
 # main }}}
