@@ -129,6 +129,9 @@ info "vim-startup installer"
 info "---------------------"
 info ""
 
+isinstalled "vim"
+isinstalled "git"
+
 ACTION=${1-install}
 case ${ACTION} in
     install)
@@ -141,8 +144,8 @@ case ${ACTION} in
         install
 esac
 
-isinstalled "vim"
-isinstalled "git"
+info ""
+info "--"
 info "read more at ${VIM_STARTUP_REPO}"
 
 # main }}}
