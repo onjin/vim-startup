@@ -119,3 +119,46 @@ python-mode plugins bindings:
  * iC        - Select inner class. Ex: viC, diC, yiC, ciC (normal, operator modes)
  * aM M      - Select a function or method. Ex: vaM, daM, dM, yaM, yM, caM, cM (normal, operator modes)
  * iM        - Select inner function or method. Ex: viM, diM, yiM, ciM (normal, operator modes)
+
+Plugins (bundles) included
+--------------------------
+
+Plugins are in **~/.vimrc.bundles** file. If you want to install additional plugins, add them to **~/.vimrc.bundles.local** file.
+
+ * 'altercation/vim-colors-solarized'
+ * 'bcnice20/go-vim'
+ * 'beyondwords/vim-twig'
+ * 'blackboard.vim'  # 1.17  Enhanced version of the python syntax highlighting script
+ * 'bling/vim-airline'
+ * 'Conque-Shell'
+ * 'derekwyatt/vim-scala'
+ * 'ervandew/supertab'
+ * 'garybernhardt/pycomplexity', {'rtp': 'pycomplexity.vim/'}
+ * 'honza/vim-snippets.git '
+ * 'joonty/vim-phpqa.git'
+ * 'jpalardy/vim-slime'
+ * 'junegunn/goyo.vim'
+ * 'kchmck/vim-coffee-script'
+ * 'kien/rainbow_parentheses.vim'
+ * 'klen/python-mode'
+ * 'mhinz/vim-startify'
+ * 'michaeljsmith/vim-indent-object'
+ * 'nathanaelkane/vim-indent-guides'
+ * 'plasticboy/vim-markdown'  # Markdown Vim Mode
+ * 'python.vim--Vasiliev'  # 1.17  Enhanced version of the python syntax highlighting script
+ * 'scrooloose/nerdtree'
+ * 'Shougo/unite-outline'
+ * 'Shougo/unite.vim'
+ * 'Shougo/vimproc'
+ * 'Shougo/vimshell'
+ * 'sjl/gundo.vim'
+ * 'sotte/presenting.vim'  # A simple tool for presenting slides in vim based on text files.
+ * 'Tagbar'
+ * 'tpope/vim-fugitive'
+ * 'tpope/vim-surround'
+ * 'UltiSnips'
+ * 'vcscommand.vim'
+ * 'VimClojure'
+ * 'vim-scripts/PDV--phpDocumentor-for-Vim'
+ * 'xolox/vim-misc'
+ * 'xolox/vim-notes'
