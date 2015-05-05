@@ -87,11 +87,6 @@ install_fonts() {
     IFS=${SAVEIFS}
 }
 
-compile_vimproc() {
-    info " - compiling vimproc"
-    cd ${VIM_STARTUP_HOME}/.vim/bundle/vimproc/ && make -f make_unix.mak
-}
-
 init_backup() {
     mkdir -p ~/.vim/backup
 }
@@ -113,7 +108,6 @@ install() {
     touch ${HOME}/.vimrc.local
 
     init_neobundle
-    compile_vimproc
 
     info "vim-startup installed - run vim/gvim in order to install plugins"
 }
@@ -139,6 +133,13 @@ case ${ACTION} in
         ;;
     upgrade)
         upgrade
+        ;;
+    install_fonts)
+        install_fonts
+        ;;
+    help)
+        echo "Usage: $0 <cmd>"
+        echo "available commands: install, upgrade, install_fonts"
         ;;
     *)
         install
