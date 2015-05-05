@@ -80,10 +80,7 @@ NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'vcscommand.vim'
 NeoBundle 'Tagbar'
 
-NeoBundle 'bcnice20/go-vim'
-NeoBundle 'kchmck/vim-coffee-script'
 
-NeoBundle 'VimClojure'
 NeoBundle 'jpalardy/vim-slime'
 NeoBundle 'ervandew/supertab'
 NeoBundle 'UltiSnips'
@@ -93,19 +90,38 @@ NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'mhinz/vim-startify'
 NeoBundle 'xolox/vim-notes'
 NeoBundle 'xolox/vim-misc'
-NeoBundle 'python.vim--Vasiliev' " 1.17  Enhanced version of the python syntax highlighting script
-NeoBundle 'blackboard.vim' " 1.17  Enhanced version of the python syntax highlighting script
-NeoBundle 'klen/python-mode'
-NeoBundle 'joonty/vim-phpqa.git'
+
 NeoBundle 'beyondwords/vim-twig'
 NeoBundle 'sotte/presenting.vim' " A simple tool for presenting slides in vim based on text files.
-NeoBundle 'garybernhardt/pycomplexity', {'rtp': 'pycomplexity.vim/'}
 NeoBundle 'derekwyatt/vim-scala'
-NeoBundle 'vim-scripts/PDV--phpDocumentor-for-Vim'
 NeoBundle 'plasticboy/vim-markdown' " Markdown Vim Mode
 NeoBundle "junegunn/goyo.vim"
 NeoBundle "tpope/vim-surround"
 NeoBundle "kien/rainbow_parentheses.vim"
+
+if !exists('g:vimstartup_no_python_bundles')
+    NeoBundle 'python.vim--Vasiliev' " 1.17  Enhanced version of the python syntax highlighting script
+    NeoBundle 'klen/python-mode'
+    NeoBundle 'blackboard.vim' " 1.17  Enhanced version of the python syntax highlighting script
+    NeoBundle 'garybernhardt/pycomplexity', {'rtp': 'pycomplexity.vim/'}
+endif
+
+if !exists('g:vimstartup_no_clojure_bundles')
+    NeoBundle 'VimClojure'
+endif
+
+if !exists('g:vimstartup_no_go_bundles')
+    NeoBundle 'bcnice20/go-vim'
+endif
+
+if !exists('g:vimstartup_no_coffeescript_bundles')
+    NeoBundle 'kchmck/vim-coffee-script'
+endif
+
+if !exists('g:vimstartup_no_php_bundles')
+    NeoBundle 'joonty/vim-phpqa.git'
+    NeoBundle 'vim-scripts/PDV--phpDocumentor-for-Vim'
+endif
 
 " bundles }}}
 

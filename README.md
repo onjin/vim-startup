@@ -42,6 +42,30 @@ Upgrade:
    ./startup.sh upgrade
 ```
 
+Configuration
+-------------
+
+To disable language plugins put in **~/.vimrc.before** proper settings:
+```vim
+
+    " to disable python-mode and enhanced python syntax colorscheme
+    let g:vimstartup_no_python_bundles = 1
+
+    " to disable VimClojure
+    let g:vimstartup_no_clojure_bundles = 1
+
+    " to disable go-vim
+    let g:vimstartup_no_go_bundles = 1
+
+    " to disalbe vim-coffee-script
+    let g:vimstartup_no_coffeescript_bundles = 1
+
+    " to disable phpqa && phpdocumentor
+    let g:vimstartup_no_php_bundles = 1
+```
+
+
+
 Help
 ----
 

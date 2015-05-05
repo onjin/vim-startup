@@ -222,7 +222,11 @@ let python_highlight_all=1
 " 1}}} "
 
 " UI {{{
-colorscheme blackboard
+if !exists('g:vimstartup_no_python_bundles')
+    colorscheme blackboard
+else
+    colorscheme desert
+endif
 highlight NonText guifg=#4a4a59
 highlight SpecialKey guifg=#4a4a59
 set modelines=5                     " Debian likes to disable this, The number of lines at the top and bottom to look for modelines.
