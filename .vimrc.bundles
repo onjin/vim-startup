@@ -1,0 +1,127 @@
+" header {{{
+" vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:foldmethod=marker
+"
+" The MIT License (MIT)
+"
+" Copyright (c) [year] [fullname]
+"
+" Permission is hereby granted, free of charge, to any person obtaining a copy
+" of this software and associated documentation files (the "Software"), to deal
+" in the Software without restriction, including without limitation the rights
+" to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+" copies of the Software, and to permit persons to whom the Software is
+" furnished to do so, subject to the following conditions:
+"
+" The above copyright notice and this permission notice shall be included in all
+" copies or substantial portions of the Software.
+"
+" THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+" IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+" FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+" AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+" LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+" OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+" SOFTWARE.
+"
+" header }}}
+
+
+" config {{{
+set nocompatible
+set background=dark
+
+" config }}}
+
+" neobundle bootstraping {{{
+" Note: Skip initialization for vim-tiny or vim-small.
+if !1 | finish | endif
+
+if has('vim_starting')
+  if &compatible
+    set nocompatible               " Be iMproved
+  endif
+
+  " Required:
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+" neobundle bootstraping }}}
+
+" bundles {{{
+
+" Interactive command execution in Vim
+NeoBundle 'Shougo/vimproc', {
+            \ 'build' : {
+            \ 'windows' : 'make -f make_mingw32.mak',
+            \ 'cygwin' : 'make -f make_cygwin.mak',
+            \ 'mac' : 'make -f make_mac.mak',
+            \ 'unix' : 'make -f make_unix.mak',
+            \ },
+            \ }
+
+NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/unite-outline'
+
+" A Git wrapper so awesome, it should be illegal
+NeoBundle 'tpope/vim-fugitive'
+
+NeoBundle 'michaeljsmith/vim-indent-object'
+NeoBundle 'bling/vim-airline'
+NeoBundle 'sjl/gundo.vim'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'vcscommand.vim'
+NeoBundle 'Tagbar'
+
+NeoBundle 'bcnice20/go-vim'
+NeoBundle 'kchmck/vim-coffee-script'
+
+NeoBundle 'VimClojure'
+NeoBundle 'jpalardy/vim-slime'
+NeoBundle 'ervandew/supertab'
+NeoBundle 'UltiSnips'
+NeoBundle 'honza/vim-snippets.git '
+NeoBundle 'Conque-Shell'
+NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'mhinz/vim-startify'
+NeoBundle 'xolox/vim-notes'
+NeoBundle 'xolox/vim-misc'
+NeoBundle 'python.vim--Vasiliev' " 1.17  Enhanced version of the python syntax highlighting script
+NeoBundle 'blackboard.vim' " 1.17  Enhanced version of the python syntax highlighting script
+NeoBundle 'klen/python-mode'
+NeoBundle 'joonty/vim-phpqa.git'
+NeoBundle 'beyondwords/vim-twig'
+NeoBundle 'sotte/presenting.vim' " A simple tool for presenting slides in vim based on text files.
+NeoBundle 'garybernhardt/pycomplexity', {'rtp': 'pycomplexity.vim/'}
+NeoBundle 'derekwyatt/vim-scala'
+NeoBundle 'vim-scripts/PDV--phpDocumentor-for-Vim'
+NeoBundle 'plasticboy/vim-markdown' " Markdown Vim Mode
+NeoBundle "junegunn/goyo.vim"
+NeoBundle "tpope/vim-surround"
+NeoBundle "kien/rainbow_parentheses.vim"
+
+" bundles }}}
+
+" neobundles finish {{{
+call neobundle#end()
+
+" Required:
+filetype plugin indent on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
+" neobundles finish }}}
+
+" .vimrc.bundles.local - local bundles {{{
+if filereadable(expand("~/.vimrc.bundles.local"))
+    source ~/.vimrc.bundles.local
+endif
+" .vimrc.bundles.local }}}

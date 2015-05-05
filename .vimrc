@@ -1,56 +1,78 @@
-if v:progname =~? "evim"
-  finish
+" header {{{
+" vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:foldmethod=marker
+"
+" The MIT License (MIT)
+"
+" Copyright (c) [year] [fullname]
+"
+" Permission is hereby granted, free of charge, to any person obtaining a copy
+" of this software and associated documentation files (the "Software"), to deal
+" in the Software without restriction, including without limitation the rights
+" to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+" copies of the Software, and to permit persons to whom the Software is
+" furnished to do so, subject to the following conditions:
+"
+" The above copyright notice and this permission notice shall be included in all
+" copies or substantial portions of the Software.
+"
+" THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+" IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+" FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+" AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+" LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+" OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+" SOFTWARE.
+"
+" header }}}
+
+" .vimrc.before {{{
+if filereadable(expand("~/.vimrc.before"))
+    source ~/.vimrc.before
 endif
-let mapleader = ","
+" .vimrc.before }}}
 
-set nocompatible               " be iMproved
-filetype off                   " required!
-
-if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+" .vimrc.bundles {{{
+if filereadable(expand("~/.vimrc.bundles"))
+    source ~/.vimrc.bundles
 endif
+" .vimrc.bundles }}}
 
-call neobundle#rc(expand('~/.vim/bundle/'))
 
-" Let NeoBundle manage NeoBundle
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-" Recommended to install
-" After install, turn shell ~/.vim/bundle/vimproc, (n,g)make -f your_machines_makefile
-NeoBundle 'Shougo/vimproc'
-
-NeoBundle 'tpope/vim-fugitive' " fugitive.vim: a Git wrapper so awesome, it should be illegal
-
-NeoBundle 'scrooloose/syntastic'
-
-let g:syntastic_phpcs_disable=1
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_loc_list=2
-let g:syntastic_enable_balloons = 1
-let g:syntastic_auto_jump=0
-let g:syntastic_loc_list_height=6
-let g:syntastic_quiet_warnings=0
-let g:syntastic_python_checkers=['flake8']
-let g:syntastic_python_flake8_args='--ignore=E128,E501,E127'
-
-NeoBundle 'michaeljsmith/vim-indent-object'
-" NeoBundle 'Lokaltog/vim-powerline'
-" {{
-"let g:Powerline_symbols = 'fancy'
-"set laststatus=2 " Always show status line
-"set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-" set statusline+=%{fugitive#statusline()}
-
-" }}
-
-" {{ airline
-NeoBundle 'bling/vim-airline'
-""""""""""""""""""""""""""""""
-" airline
-""""""""""""""""""""""""""""""
+" settings {{{
 set laststatus=2 " Always show status line
+set autoindent
+set background=dark
+set autowrite " Automatically save before commands like :next and :make
+set backspace=indent,eol,start " allow backspacing over everything in insert mode
+set backup        " keep a backup file
+set backupdir=~/.vim/backup,/tmp
+set directory=~/.vim/backup//,/tmp//
+set ruler                           " show the cursor position all the time
+if has("balloon_eval") && has("unix")
+  set ballooneval
+endif
+
+if exists(" &breakindent")
+  set breakindent showbreak=+++
+elseif has("gui_running")
+  set showbreak=+++
+endif
+
+set cmdheight=1                     " command line height
+set complete-=i                     " Searching includes can be slow
+set display=lastline                "
+set joinspaces                      " Put spaces between lines joined with the > command.
+set lazyredraw                      " Do not redraw the screen during macro execution.
+set listchars=tab:▸\ ,eol:¬,trail:· " Define how list mode appears, Use the same symbols as TextMate for tabstops and EOLs
+" settings }}}
+
+
+nmap <Leader>gs :Gstatus<CR>
+nmap <Leader>gc :Gcommit<CR>
+nmap <Leader>gd :Gdiff<CR>
+nmap <Leader>gb :Gblame<CR>
+
+
 let g:airline_theme             = 'powerlineish'
 let g:airline_enable_branch     = 1
 let g:airline_enable_syntastic  = 1
@@ -64,135 +86,122 @@ let g:airline_right_alt_sep     = '⮃'
 let g:airline_branch_prefix     = '⭠'
 let g:airline_readonly_symbol   = '⭤'
 let g:airline_linecolumn_prefix = '⭡'
-" }} airline
+" 1}}} "
 
-NeoBundle 'sjl/gundo.vim'
+" NeoBundle 'sjl/gundo.vim' {{{1 "
 nnoremap <F7> :GundoToggle<CR>
+" 1}}} "
 
-NeoBundle 'scrooloose/nerdtree'
-" {{
+" NeoBundle 'scrooloose/nerdtree' {{{1 "
 let NERDTreeMinimalUI = 1
-" }}
+" 1}}} "
 
-NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/unite.vim'
+
+" NeoBundle 'Shougo/unite.vim' {{{1 "
+
 let g:unite_source_history_yank_enable = 1
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 
-NeoBundle 'Shougo/vimproc'
-NeoBundle 'Shougo/unite-outline'
 
-" {{
+" mapping
+nnoremap <silent> <F8> :Unite neobundle/update -log -wrap -auto-quit<CR>
+nnoremap <C-p> :<C-u>Unite -buffer-name=files -start-insert file_rec/async<cr>
+nnoremap ,p :<C-u>Unite -no-split -buffer-name=files -start-insert file_rec/async<cr>
+nnoremap ,l :<C-u>Unite -buffer-name=files -start-insert file_mru<cr>
+nnoremap ,/ :Unite grep:.<cr>
+nnoremap ,h :Unite history/yank<cr>
+nnoremap ,s :Unite -quick-match buffer<cr>
+" 1}}} "
 
-" SuperTab like snippets behavior.
-"imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ?
-" \ "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-let g:SuperTabDefaultCompletionType = "context"
 
-" For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
 
-" }}
-NeoBundle 'altercation/vim-colors-solarized'
-
-" vim-scripts
-NeoBundle 'vcscommand.vim'
-NeoBundle 'Tagbar'
-
-"
-" Bundle 'Vimerl'
-NeoBundle 'bcnice20/go-vim'
-NeoBundle 'kchmck/vim-coffee-script'
-
-NeoBundle 'VimClojure'
 " Settings for VimClojure
 let g:vimclojure#HighlightBuiltins=1      " Highlight Clojure's builtins
 let g:vimclojure#ParenRainbow=1           " Rainbow parentheses'!
+" 1}}} "
 
-NeoBundle 'jpalardy/vim-slime'
+" NeoBundle 'jpalardy/vim-slime' {{{1 "
 let g:slime_target = "screen"
+" 1}}} "
 
-NeoBundle 'UltiSnips'
-let g:UltiSnipsSnippetsDir="~/.vim/bundle/UltiSnips/UltiSnips/"
-let g:UltiSnipsExpandTrigger="<c-tab>"
-let g:UltiSnipsListSnippets="<c-s-tab>"
 
-NeoBundle 'Conque-Shell'
+" NeoBundle 'UltiSnips' {{{1 "
 
-NeoBundle 'davidhalter/jedi-vim'
-let g:jedi#auto_initialization = 1
-let g:jedi#goto_command = "<leader>g"
-let g:jedi#get_definition_command = "<leader>d"
-let g:jedi#use_tabs_not_buffers = 0
-let g:jedi#popup_on_dot = 0
-let g:jedi#rename_command = "<leader>r"
-let g:jedi#related_names_command = "<leader>n"
-let g:jedi#show_function_definition = "0"
+let g:UltiSnipsSnippetsDir="~/.vim/bundle/vim-snippets/UltiSnips/"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
-NeoBundle 'nathanaelkane/vim-indent-guides'
+" Prevent UltiSnips from stealing ctrl-k.
+augroup VimStartup
+    autocmd!
+    autocmd VimEnter * sil! iunmap <c-k>
+augroup end
 
-NeoBundle 'mhinz/vim-startify'
-
-" require python2.7
-NeoBundle 'dbsr/vimpy'
-
-let g:vimpy_prompt_resolve = 1
-
-NeoBundle 'ervandew/supertab'
-filetype plugin indent on     " required!
-"
-" Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
-"
-" see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle command are not allowed..
-set nocompatible
-set autoindent
-set autowrite " Automatically save before commands like :next and :make
-set backspace=indent,eol,start " allow backspacing over everything in insert mode
-
-NeoBundle 'xolox/vim-notes'
-NeoBundle 'xolox/vim-misc'
+" 1}}} "
 
 :let g:notes_directories = ['~/Dropbox/Notes', '~/Dropbox/Shared.Notes']
 
+" https://github.com/klen/python-mode/issues/342 - hanging after autocompletion
+let g:pymode_rope_lookup_project = 0
 
-"NeoBundle 'vim-scripts/vim-signify' " Advanced plugin for showing VCS diffs in the SignColumn
-
-NeoBundle 'python.vim--Vasiliev' " 1.17  Enhanced version of the python syntax highlighting script
-NeoBundle 'blackboard.vim' " 1.17  Enhanced version of the python syntax highlighting script
-" {{{ python-mode
-NeoBundle 'klen/python-mode'
-
+let g:pymode_rope = 1
 let g:pymode_lint_onfly = 0
 let g:pymode_lint_write = 1
 let g:pymode_utils_whitespaces = 0
+let g:pymode_rope_complete_on_dot = 0
+let g:pymode_syntax_print_as_function = 1
 
-" }}}
+" 1}}} "
 
-NeoBundle 'sotte/presenting.vim' " A simple tool for presenting slides in vim based on text files.
+" NeoBundle 'joonty/vim-phpqa.git' {{{1 "
+let g:phpqa_codesniffer_args = "--standard=PSR1"
+let g:phpqa_messdetector_autorun = 0
+" 1}}} "
 
-" NeoBundle 'onjin/pycomplexity.vim'
-NeoBundle 'garybernhardt/pycomplexity', {'rtp': 'pycomplexity.vim/'}
-NeoBundle 'derekwyatt/vim-scala'
-" NeoBundle 'cespare/vjde' " Mirror of http://www.vim.org/scripts/script.php?script_id=1213
-NeoBundle 'plasticboy/vim-markdown' " Markdown Vim Mode
+" NeoBundle 'beyondwords/vim-twig' {{{1 "
 
-
-
-nnoremap <silent> <F8> :Unite neobundle/update -log -wrap -auto-quit<CR>
+autocmd BufNewFile,BufRead *.twig set filetype=html.twig
+" 1}}} "
 
 
-" ---------------
-" Color
-" ---------------
+
+" NeoBundle 'vim-scripts/PDV--phpDocumentor-for-Vim' {{{1 "
+nmap <F9> :set paste<CR>:exe PhpDoc()<CR>:set nopaste<CR>
+
+
+let g:pdv_cfg_Type = "mixed"
+let g:pdv_cfg_Package = ""
+let g:pdv_cfg_Version = "$id$"
+" 1}}} "
+
+" NeoBundle "juneguun/goyo.vim" {{{1 "
+
+let g:goyo_width = 80
+let g:goyo_margin_top = 4
+let g:goyo_margin_bottom = 4
+
+map <C-F10> :set nonumber!<CR>
+nnoremap <C-n> :set nonumber!<CR>
+
+map <F10> :Goyo<CR>
+nnoremap <F10> :Goyo<CR>
+
+map <ctrl>n :Goyo<CR>
+nnoremap <ctrl>n :Goyo<CR>
+" 1}}} "
+
+" NeoBundle "tpope/vim-surround" {{{1 "
+" 1}}} "
+
+" NeoBundle "kien/rainbow_parentheses.vim" {{{1 "
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+" 1}}} "
+"
+" Colors {{{1 "
 if ! has("gui_running")
     set t_Co=256
     set guifont=monospace\ 12
@@ -207,56 +216,28 @@ else
     " set guicursor+=a:blinkwait700-blinkon700-blinkoff700
 endif
 
-" colorscheme solarized
-colorscheme blackboard
-set background=dark
-
 " python.vim-vasiliev options
 let python_highlight_space_errors=1
 let python_highlight_all=1
+" 1}}} "
 
-" ---------------
-" Backups
-" ---------------
-set backup        " keep a backup file
-set backupdir=~/.vimbackup,/tmp
-set directory=~/.vimbackup//,/tmp//
-" ---------------
-" UI
-" ---------------
-set ruler                           " show the cursor position all the time
-if has("balloon_eval") && has("unix")
-  set ballooneval
-endif
-if exists(" &breakindent")
-  set breakindent showbreak=+++
-elseif has("gui_running")
-  set showbreak=+++
-endif
-set cmdheight=1                     " command line height
-set complete-=i                     " Searching includes can be slow
-set display=lastline                "
-set joinspaces                      " Put spaces between lines joined with the > command.
-set lazyredraw                      " Do not redraw the screen during macro execution.
-set listchars=tab:▸\ ,eol:¬,trail:· " Define how list mode appears, Use the same symbols as TextMate for tabstops and EOLs
-                                    "Invisible character colors
+" UI {{{
+colorscheme blackboard
 highlight NonText guifg=#4a4a59
 highlight SpecialKey guifg=#4a4a59
 set modelines=5                     " Debian likes to disable this, The number of lines at the top and bottom to look for modelines.
 set scrolloff=1                     " Number of lines to keep above or below the cursor.
+" UI }}} "
 
-" -------------
-"  lang
-" -------------
+" lang {{{
 if exists("+spelllang")
   let g:spellfile_URL = 'http://ftp.vim.org/vim/runtime/spell'
   set spelllang=en_us,pl
   set nospell
 endif
+" lang }}}
 
-" ---------------
-" Behaviors
-" ---------------
+" behaviors {{{1 "
 syntax enable
 
 set nohlsearch
@@ -297,23 +278,15 @@ set nu                          " show lines number
 set ff=unix                     " unix end of line
 set list
 set listchars=tab:>\ ,trail:~
+" 1}}} "
 
-" ---------------
-" folding
-" --------------- {{
-"set foldenable                                   " Turn on folding
-"set foldmethod=syntax                            " Fold on the marker
-"set foldlevel=100                                " Don't autofold anything (but I can still fold manually)
-"set foldlevelstart=99                            " Remove folds
-"set foldopen=block,hor,mark,percent,quickfix,tag " what movements open fold
-
-" ---------------
-" mouse
-" --------------- {{
+" mouse {{{1 "
 set mouse=a                     " enable mouse
 set mousehide                   " Hide mouse after chars typed
 set mousemodel=popup            " the right mouse button causes a small pop-up menu to appear
+" 1}}} "
 
+" reopen files {{{1 "
 " ---------------
 " reopen file on last known position
 " --------------- {{
@@ -328,11 +301,9 @@ autocmd BufReadPost *
       \ endif
 " }}
 
+" 1}}} "
 
-
-" ---------------
-" Trailing Whitespaces
-" --------------- {{
+" Trailing whitespaces {{{1 "
 function! <SID>StripTrailingWhitespaces()
   " Preparation: save last search, and cursor position.
   let _s=@/
@@ -346,37 +317,7 @@ function! <SID>StripTrailingWhitespaces()
 endfunction
 
 " autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
-" }}
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
-" Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
-" Use camel case completion.
-let g:neocomplcache_enable_camel_case_completion = 1
-" Use underbar completion.
-let g:neocomplcache_enable_underbar_completion = 1
-" Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
-" Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-   \ 'scheme' : $HOME.'/.gosh_completions'
-    \ }
-
-" Define keyword.
-if !exists('g:neocomplcache_keyword_patterns')
-    let g:neocomplcache_keyword_patterns = {}
-endif
-let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
-
-
-" AutoComplPop like behavior.
-"let g:neocomplcache_enable_auto_select = 1
+" 1}}} "
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -385,11 +326,6 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-" Enable heavy omni completion.
-if !exists('g:neocomplcache_omni_patterns')
-let g:neocomplcache_omni_patterns = {}
-endif
-"let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 "autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 set noerrorbells visualbell t_vb=
 
@@ -406,6 +342,7 @@ endif
 " F5        - paste mode toggle
 " F6        - check complexity
 " F7        - graphical undo
+" F10       - distraction free mode (goyo)
 " F12       - errors window toggle
 " Shift+F12 - fix pep8 errors
 "
@@ -422,26 +359,28 @@ endif
 " <space>y  - yank history
 " <space>l  - last edited files
 "
-" ,gs       - git status
-" ,gc       - git commit
-" ,gd       - git diff
-" ,gb       - git blame
+" <space>gs       - git status
+" <space>gc       - git commit
+" <space>gd       - git diff
+" <space>gb       - git blame
+"1;2S
+"1;2S
 "
 " <ctr>+J   - switch && maximize window
 " <ctr>+K   - switch && maximize window
 "
 " <ctr>+n   - hlsearch toggle
-" ,l        - set list toggle
+" <space>l        - set list toggle
 "
-" ,re       - edit ~/.vimrc
-" ,rt       - open ~/.vimrc in tab
-" ,rc       - reload ~/.vimrc
-" ,rh       - edit ~/.vimrc at mapping help
+" <space>re       - edit ~/.vimrc
+" <space>rt       - open ~/.vimrc in tab
+" <space>rc       - reload ~/.vimrc
+" <space>rh       - edit ~/.vimrc at mapping help
 "
-" ,c        - close current buffer
-" ,wc       - write & close current buffer
-" ,d        - go previous buffer && close current
-" ,D        - close all buffers
+" <space>c        - close current buffer
+" <space>wc       - write & close current buffer
+" <space>d        - go previous buffer && close current
+" <space>D        - close all buffers
 " ,,        - switch between last two buffers
 "
 " python-mode plugins bindings
@@ -451,7 +390,6 @@ endif
 " <C-c>d    - Rope show documentation (g:pymode_rope enabled)
 " <C-c>f    - Rope find occurrences (g:pymode_rope enabled)
 " <Leader>r - Run python (g:pymode_run enabled)
-" <Leader>b - Set, unset breakpoint (g:pymode_breakpoint enabled)
 " [[        - Jump on previous class or function (normal, visual, operator modes)
 " ]]        - Jump on next class or function (normal, visual, operator modes)
 " [M        - Jump on previous class or method (normal, visual, operator modes)
@@ -464,24 +402,12 @@ endif
 " VimShell
 nnoremap <C-s> :VimShellPop<cr>
 
-" Unite
-nnoremap <C-p> :<C-u>Unite -buffer-name=files -start-insert file_rec/async<cr>
-nnoremap <space>p :<C-u>Unite -no-split -buffer-name=files -start-insert file_rec/async<cr>
-nnoremap <space>l :<C-u>Unite -buffer-name=files -start-insert file_mru<cr>
-nnoremap <space>/ :Unite grep:.<cr>
-nnoremap <space>y :Unite history/yank<cr>
-nnoremap <space>s :Unite -quick-match buffer<cr>
 
-" git/fugitive
-nmap <Leader>gs :Gstatus<CR>
-nmap <Leader>gc :Gcommit<CR>
-nmap <Leader>gd :Gdiff<CR>
-nmap <Leader>gb :Gblame<CR>
 
 " switch and maximixe window
 set winminheight=0
-map <C-J> <C-W>j<C-W>_
-map <C-K> <C-W>k<C-W>_
+" map <C-J> <C-W>j<C-W>_
+" map <C-K> <C-W>k<C-W>_
 
 nnoremap <silent> <F3> :call <SID>StripTrailingWhitespaces()<CR>
 
@@ -499,14 +425,8 @@ set pastetoggle=<F5>
 nnoremap <silent> <F6> :Complexity<CR>
 
 " errors
-" map <F12> :w<CR>:Errors<CR>
-" imap <F12> <ESC>:w<CR>:Errors<CR>
-map <F12> :PyLint<CR>
-map <S-F12> :PyLintAuto<CR>
-
-"map <C-F12> :w<CR>:ToggleErrors<CR>
-"imap <C-F12> <ESC>:w<CR>:ToggleErrors<CR>
-
+map <F12> :PymodeLint<CR>
+map <S-F12> :PymodeLintAuto<CR>
 
 nmap <Leader>im :VimpyCheckLine<CR>
 
@@ -515,24 +435,20 @@ nmap <leader>l :set list!<CR>   " Shortcut to rapidly toggle `set list
 " imap <2-LeftMouse> <C-o>:SearchNotes<CR>
 " nmap <2-LeftMouse> :SearchNotes<CR>
 
-" -------------------
-" font switcher
-" -------------------
+" font switching {{{1 "
 map <silent> <S-F6> :set guifont=Anonymous\ Pro\ 12<CR>
 map <silent> <S-F7> :set guifont=Inconsolata\ 12<CR>
 map <silent> <S-F8> :set guifont=monospace\ 12<CR>
+" 1}}} "
 
-" ---------------
-" easy editing .vimrc file
-" --------------- {{
+" easy .vimrc editing {{{1 "
 nmap <Leader>rc :source ~/.vimrc<CR>
 nmap <Leader>rt :tabnew ~/.vimrc<CR>
 nmap <Leader>re :e ~/.vimrc<CR>
 nmap <Leader>rh :e +379 ~/.vimrc<CR>
-" }}
-" ---------------
-" Switch between buffers
-" --------------- {{
+" 1}}} "
+
+" buffers switching {{{1 "
 noremap <tab> :bn<CR>
 noremap <S-tab> :bp<CR>
 nmap <leader>c :bdelete<CR> " Close current buffer
@@ -540,53 +456,40 @@ nmap <leader>wc :write<CR>:bdelete<CR> " Write & close current buffer
 nmap <leader>d :bprevious<CR>:bdelete #<CR> " Close buffer
 nmap <leader>D :bufdo bd<CR>                " Close all buffers
 nnoremap <leader><leader> <C-^>             " Switch between last two buffers
-" }}
+" 1}}} "
 
-" ---------------
-" move lines
-" --------------- {{
+" move lines {{{1 "
 nmap <A-j> ]e==
 nmap <A-k> [e==
 imap <A-j> <Esc>]e==i
 imap <A-k> <Esc>[e==i
 vmap <A-j> ]egv=gv
 vmap <A-k> [egv=gv
-" }}
-" ---------------
-" work with windows
-" --------------- {{
-" map <C-h> <C-w>h
-" map <C-j> <C-w>j
-" map <C-k> <C-w>k
-" map <C-l> <C-w>l
-" }}
+" 1}}} "
 
-" Neosnippets key-mappings.
-"
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<TAB>"
-
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
-
-" nerttreee
-" nmap <C-P> :NERDTreeToggle<CR>
-" nmap <Leader>sit :NERDTreeFind<CR>
-" }} Mapping
 
 
 " search recursively upwards for the tags
 set tags=tags;/
 
+" {{{ splitting
+nmap <leader>/ :vsplit<CR>
+" }}}
+"
+vmap <Leader>y "+y
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
 
-NeoBundleCheck
+" 13<enter> <enter> <backspace>
+nnoremap <CR> G
+nnoremap <BS> gg
+
+iabbrev vimfooter # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+
+" .vimrc.local {{{
+if filereadable(expand("~/.vimrc.local"))
+    source ~/.vimrc.local
+endif
+" .vimrc.bundles }}}
