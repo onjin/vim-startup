@@ -48,7 +48,7 @@ Configuration
 To disable language plugins put in **~/.vimrc.before** proper settings:
 ```vim
 
-    " to disable python-mode and enhanced python syntax colorscheme
+    " to disable python bundles and enhanced python syntax colorscheme
     let g:vimstartup_no_python_bundles = 1
 
     " to disable VimClojure
@@ -126,23 +126,6 @@ buffers:
  * ,D        - close all buffers
  * ,,        - switch between last two buffers
 
-python-mode plugins bindings:
-
- * K         - Show python docs (g:pymode_doc enabled)
- * <C-Space> - Rope autocomplete (g:pymode_rope enabled)
- * <C-c>g    - Rope goto definition (g:pymode_rope enabled)
- * <C-c>d    - Rope show documentation (g:pymode_rope enabled)
- * <C-c>f    - Rope find occurrences (g:pymode_rope enabled)
- * <Leader>r - Run python (g:pymode_run enabled)
- * <Leader>b - Set, unset breakpoint (g:pymode_breakpoint enabled)
- * [[        - Jump on previous class or function (normal, visual, operator modes)
- * ]]        - Jump on next class or function (normal, visual, operator modes)
- * [M        - Jump on previous class or method (normal, visual, operator modes)
- * ]M        - Jump on next class or method (normal, visual, operator modes)
- * aC C      - Select a class. Ex: vaC, daC, dC, yaC, yC, caC, cC (normal, operator modes)
- * iC        - Select inner class. Ex: viC, diC, yiC, ciC (normal, operator modes)
- * aM M      - Select a function or method. Ex: vaM, daM, dM, yaM, yM, caM, cM (normal, operator modes)
- * iM        - Select inner function or method. Ex: viM, diM, yiM, ciM (normal, operator modes)
 
 Plugins (bundles) included
 --------------------------
@@ -155,6 +138,7 @@ Plugins are in **~/.vimrc.bundles** file. If you want to install additional plug
  * 'blackboard.vim'  # 1.17  Enhanced version of the python syntax highlighting script
  * 'bling/vim-airline'
  * 'Conque-Shell'
+ * 'davidhalter/jedi-vim'
  * 'derekwyatt/vim-scala'
  * 'ervandew/supertab'
  * 'garybernhardt/pycomplexity', {'rtp': 'pycomplexity.vim/'}
@@ -164,7 +148,6 @@ Plugins are in **~/.vimrc.bundles** file. If you want to install additional plug
  * 'junegunn/goyo.vim'
  * 'kchmck/vim-coffee-script'
  * 'kien/rainbow_parentheses.vim'
- * 'klen/python-mode'
  * 'mhinz/vim-startify'
  * 'michaeljsmith/vim-indent-object'
  * 'nathanaelkane/vim-indent-guides'

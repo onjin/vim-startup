@@ -101,7 +101,8 @@ NeoBundle "kien/rainbow_parentheses.vim"
 
 if !exists('g:vimstartup_no_python_bundles')
     NeoBundle 'python.vim--Vasiliev' " 1.17  Enhanced version of the python syntax highlighting script
-    NeoBundle 'klen/python-mode'
+    " NeoBundle 'klen/python-mode'
+    NeoBundle 'davidhalter/jedi-vim'
     NeoBundle 'blackboard.vim' " 1.17  Enhanced version of the python syntax highlighting script
     NeoBundle 'garybernhardt/pycomplexity', {'rtp': 'pycomplexity.vim/'}
 endif
