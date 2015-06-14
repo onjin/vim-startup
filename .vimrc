@@ -72,20 +72,28 @@ nmap <Leader>gc :Gcommit<CR>
 nmap <Leader>gd :Gdiff<CR>
 nmap <Leader>gb :Gblame<CR>
 
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 
 let g:airline_theme             = 'powerlineish'
-let g:airline_enable_branch     = 1
-let g:airline_enable_syntastic  = 1
+let g:airline#extensions#syntastic#enabled = 1
+let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 
 " vim-powerline symbols
+if !exists('g:ariline_symbols')
+    let g:airline_symbols = {}
+endif
 let g:airline_left_sep          = '⮀'
 let g:airline_left_alt_sep      = '⮁'
 let g:airline_right_sep         = '⮂'
 let g:airline_right_alt_sep     = '⮃'
-let g:airline_branch_prefix     = '⭠'
-let g:airline_readonly_symbol   = '⭤'
-let g:airline_linecolumn_prefix = '⭡'
+let g:airline_symbols.branch    = '⭠'
+let g:airline_symbols.readonly  = '⭤'
+let g:airline_symbols.linenr    = '⭡'
 " 1}}} "
 
 " NeoBundle 'sjl/gundo.vim' {{{1 "
@@ -348,7 +356,6 @@ endif
 " F7        - graphical undo
 " F10       - distraction free mode (goyo)
 " F12       - errors window toggle
-" Shift+F12 - fix pep8 errors
 "
 " Shift+F6  - guifonts Anonymous Pro 12
 " Shift+F7  - guifonts Inconsolata 12
@@ -429,8 +436,7 @@ set pastetoggle=<F5>
 nnoremap <silent> <F6> :Complexity<CR>
 
 " errors
-map <F12> :PymodeLint<CR>
-map <S-F12> :PymodeLintAuto<CR>
+map <F12> :SyntasticCheck<CR>
 
 nmap <Leader>im :VimpyCheckLine<CR>
 
