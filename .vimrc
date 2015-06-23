@@ -40,7 +40,6 @@ endif
 
 " settings {{{
 set laststatus=2 " Always show status line
-set autoindent
 set background=dark
 set autowrite " Automatically save before commands like :next and :make
 set backspace=indent,eol,start " allow backspacing over everything in insert mode
@@ -285,7 +284,17 @@ set splitbelow                  " Split windows at bottom
 set splitright
 
 
-set ts=4 sts=4 sw=4 expandtab
+" python / PEP8 {{{
+set textwidth=79
+set shiftwidth=4
+set tabstop=4
+set expandtab
+set softtabstop=4
+set shiftround
+set autoindent
+" python / PEP8 }}}
+
+
 set nu                          " show lines number
 set ff=unix                     " unix end of line
 set list
