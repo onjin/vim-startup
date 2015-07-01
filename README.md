@@ -74,8 +74,7 @@ Help
  * Shift+F4  - unite outline
  * F5        - paste mode toggle
  * F6        - check complexity
- * F12       - errors window toggle
- * Shift+F12 - fix pep8 errors
+ * F12       - check errors using syntastic plugin
 
 gui:
 
@@ -154,6 +153,7 @@ Plugins are in **~/.vimrc.bundles** file. If you want to install additional plug
  * 'plasticboy/vim-markdown'  # Markdown Vim Mode
  * 'python.vim--Vasiliev'  # 1.17  Enhanced version of the python syntax highlighting script
  * 'scrooloose/nerdtree'
+ * 'scrooloose/syntastic'
  * 'Shougo/unite-outline'
  * 'Shougo/unite.vim'
  * 'Shougo/vimproc'
