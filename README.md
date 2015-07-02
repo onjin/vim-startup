@@ -141,6 +141,7 @@ Plugins are in **~/.vimrc.bundles** file. If you want to install additional plug
  * 'bling/vim-airline'
  * 'Conque-Shell'
  * 'davidhalter/jedi-vim'
+ * 'jmcantrell/vim-virtualenv'
  * 'derekwyatt/vim-scala'
  * 'ervandew/supertab'
  * 'garybernhardt/pycomplexity', {'rtp': 'pycomplexity.vim/'}
