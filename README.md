@@ -48,6 +48,9 @@ Configuration
 To disable language plugins put in **~/.vimrc.before** proper settings:
 ```vim
 
+    " to disable vim startify custom start screen
+    let g:vimstartup_no_startify = 1
+
     " to disable python bundles and enhanced python syntax colorscheme
     let g:vimstartup_no_python_bundles = 1
 

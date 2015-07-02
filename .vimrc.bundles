@@ -87,7 +87,9 @@ NeoBundle 'UltiSnips'
 NeoBundle 'honza/vim-snippets.git '
 NeoBundle 'Conque-Shell'
 NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'mhinz/vim-startify'
+if !exists('g:vimstartup_no_startify')
+    NeoBundle 'mhinz/vim-startify'
+endif
 NeoBundle 'xolox/vim-notes'
 NeoBundle 'xolox/vim-misc'
 
