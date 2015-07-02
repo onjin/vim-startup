@@ -87,9 +87,7 @@ NeoBundle 'UltiSnips'
 NeoBundle 'honza/vim-snippets.git '
 NeoBundle 'Conque-Shell'
 NeoBundle 'nathanaelkane/vim-indent-guides'
-if !exists('g:vimstartup_no_startify')
-    NeoBundle 'mhinz/vim-startify'
-endif
+NeoBundle 'mhinz/vim-startify'
 NeoBundle 'xolox/vim-notes'
 NeoBundle 'xolox/vim-misc'
 
@@ -108,6 +106,7 @@ if !exists('g:vimstartup_no_python_bundles')
     NeoBundle 'scrooloose/syntastic'
     NeoBundle 'blackboard.vim' " 1.17  Enhanced version of the python syntax highlighting script
     NeoBundle 'garybernhardt/pycomplexity', {'rtp': 'pycomplexity.vim/'}
+    NeoBundle "jmcantrell/vim-virtualenv"
 endif
 
 if !exists('g:vimstartup_no_clojure_bundles')
@@ -129,6 +128,12 @@ endif
 
 " bundles }}}
 
+" .vimrc.bundles.local - local bundles {{{
+if filereadable(expand("~/.vimrc.bundles.local"))
+    source ~/.vimrc.bundles.local
+endif
+" .vimrc.bundles.local }}}
+
 " neobundles finish {{{
 call neobundle#end()
 
@@ -139,9 +144,3 @@ filetype plugin indent on
 " this will conveniently prompt you to install them.
 NeoBundleCheck
 " neobundles finish }}}
-
-" .vimrc.bundles.local - local bundles {{{
-if filereadable(expand("~/.vimrc.bundles.local"))
-    source ~/.vimrc.bundles.local
-endif
-" .vimrc.bundles.local }}}
