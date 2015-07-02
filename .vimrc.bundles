@@ -81,11 +81,9 @@ NeoBundle 'vcscommand.vim'
 NeoBundle 'Tagbar'
 
 
-NeoBundle 'jpalardy/vim-slime'
 NeoBundle 'ervandew/supertab'
 NeoBundle 'UltiSnips'
 NeoBundle 'honza/vim-snippets.git '
-NeoBundle 'Conque-Shell'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 if !exists('g:vimstartup_no_startify')
     NeoBundle 'mhinz/vim-startify'
@@ -93,7 +91,6 @@ endif
 NeoBundle 'xolox/vim-notes'
 NeoBundle 'xolox/vim-misc'
 
-NeoBundle 'beyondwords/vim-twig'
 NeoBundle 'sotte/presenting.vim' " A simple tool for presenting slides in vim based on text files.
 NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'plasticboy/vim-markdown' " Markdown Vim Mode
@@ -126,6 +123,7 @@ endif
 if !exists('g:vimstartup_no_php_bundles')
     NeoBundle 'joonty/vim-phpqa.git'
     NeoBundle 'vim-scripts/PDV--phpDocumentor-for-Vim'
+    NeoBundle 'beyondwords/vim-twig'
 endif
 
 " bundles }}}
