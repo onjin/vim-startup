@@ -18,13 +18,17 @@ also with:
 
 
 ## Installation
-To full work you need installed:
+To fully work you need to install:
 
  * vim or vim-gtk
- * exuberant-ctags
- * for good python syntax checking install 'sudo easy_install flake8'
+ * exuberant-ctags - for code navigation
 
-Installation script:
+To work with python:
+ * pip install flake8 pep8 pylint pyflakes  # for static code checking
+
+To work with php:
+ * php code sniffer  # for static code checking
+
 
 ```bash
 
