@@ -1,21 +1,23 @@
-vim-startup
-===========
+# vim-startup
 
 ![vim startup script](http://dl.dropbox.com/u/185133/vim-startup/screenshot.jpg)
 
-If you:
+## What is this?
 
- * want to start with vim
- * have no time to learn how to configure it for you
- * have no time to find plugins for you
+VIM distribution bundled with plugins managed by *neobundle* for programming in:
+
+ * python
+ * php
+ * clojure
+ * scala
+
+also with:
+ * useful dashboard / start screen with sessions handling
+ * presentation mode in vim
+ * notes handling
 
 
-**vim-startup** installs at ~/.vim-startup and you can extend it without modification using **~/.vimrc.before**,
-**~/vimrc.bundles.local** and **~/.vimrc.local** files.
-
-
-Installation
-------------
+## Installation
 To full work you need installed:
 
  * vim or vim-gtk
@@ -42,8 +44,19 @@ Upgrade:
    ./startup.sh upgrade
 ```
 
-Configuration
--------------
+
+**vim-startup** installs at directory ~/.vim-startup and makes links for:
+
+ * ~/.vimrc
+ * ~/.vimrc.bundles
+
+your local modifications you can put at files:
+
+ * ~/.vimrc.before - loaded at the beginnig before are plugins loaded; used to configure *vim-startup*
+ * ~/.vimrc.bundles.local - to put your additional plugins
+ * ~/.vimrc.local - loaded after all plugins; used to configure / reconfigure plugins and local settings
+
+## Configuration
 
 To disable language plugins put in **~/.vimrc.before** proper settings:
 ```vim
@@ -69,8 +82,7 @@ To disable language plugins put in **~/.vimrc.before** proper settings:
 
 
 
-Help
-----
+## Help
 
  * F3        - strip trailing white spaces
  * F4        - tagbar toggle
@@ -129,8 +141,7 @@ buffers:
  * ,,        - switch between last two buffers
 
 
-Plugins (bundles) included
---------------------------
+## Plugins (bundles) included
 
 Plugins are in **~/.vimrc.bundles** file. If you want to install additional plugins, add them to **~/.vimrc.bundles.local** file.
 
