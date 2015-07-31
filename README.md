@@ -149,13 +149,13 @@ buffers:
 
 Plugins are in **~/.vimrc.bundles** file. If you want to install additional plugins, add them to **~/.vimrc.bundles.local** file.
 
+ * 'TFenby/python-mode' - with rope plugin bundled
  * 'altercation/vim-colors-solarized'
  * 'bcnice20/go-vim'
  * 'beyondwords/vim-twig'
  * 'blackboard.vim'  # 1.17  Enhanced version of the python syntax highlighting script
  * 'bling/vim-airline'
  * 'Conque-Shell'
- * 'davidhalter/jedi-vim'
  * 'jmcantrell/vim-virtualenv'
  * 'derekwyatt/vim-scala'
  * 'ervandew/supertab'
