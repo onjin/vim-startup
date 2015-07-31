@@ -149,15 +149,19 @@ augroup end
 
 :let g:notes_directories = ['~/Dropbox/Notes', '~/Dropbox/Shared.Notes']
 
-" https://github.com/klen/python-mode/issues/342 - hanging after autocompletion
-let g:pymode_rope_lookup_project = 0
 
-let g:pymode_rope = 1
-let g:pymode_lint_onfly = 0
+" pymode {{{
+let g:pymode_rope_completion = 1
+let g:pymode_rope_complete_on_dot = 1
+let g:pymode_rope_completion_bind = '<C-P>'
 let g:pymode_lint_write = 1
-let g:pymode_utils_whitespaces = 0
-let g:pymode_rope_complete_on_dot = 0
-let g:pymode_syntax_print_as_function = 1
+let g:pymode_lint_on_fly = 0
+let g:pymode_rope = 1
+let g:pymode_rope_lookup_project = 1
+let g:pymode_virtualenv = 1
+let g:pymode_virtualenv_path = $VIRTUAL_ENV
+let g:pymode_rope_lookup_project = 0
+" pymode }}}
 
 " 1}}} "
 

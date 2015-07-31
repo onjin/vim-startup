@@ -100,8 +100,10 @@ NeoBundle "kien/rainbow_parentheses.vim"
 
 if !exists('g:vimstartup_no_python_bundles')
     NeoBundle 'python.vim--Vasiliev' " 1.17  Enhanced version of the python syntax highlighting script
-    " NeoBundle 'klen/python-mode'
-    NeoBundle 'davidhalter/jedi-vim'
+    " NeoBundle 'klen/python-mode' " has bug with autocomplete
+    " This bug is fixed by upgrading rope in TFenby/python-mode
+    NeoBundle 'TFenby/python-mode', { 'branch' : 'develop' }
+    " NeoBundle 'davidhalter/jedi-vim' " do not use this with python-mode
     NeoBundle 'scrooloose/syntastic'
     NeoBundle 'blackboard.vim' " 1.17  Enhanced version of the python syntax highlighting script
     NeoBundle 'garybernhardt/pycomplexity', {'rtp': 'pycomplexity.vim/'}
@@ -143,4 +145,5 @@ filetype plugin indent on
 " If there are uninstalled bundles found on startup,
 " this will conveniently prompt you to install them.
 NeoBundleCheck
+NeoBundleClean
 " neobundles finish }}}
