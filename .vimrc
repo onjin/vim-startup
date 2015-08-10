@@ -65,6 +65,9 @@ set lazyredraw                      " Do not redraw the screen during macro exec
 set listchars=tab:▸\ ,eol:¬,trail:· " Define how list mode appears, Use the same symbols as TextMate for tabstops and EOLs
 " settings }}}
 
+let g:startify_list_order = ['sessions', 'bookmarks', 'files', 'dir']
+let g:startify_change_to_vcs_root = 1
+
 
 nmap <Leader>gs :Gstatus<CR>
 nmap <Leader>gc :Gcommit<CR>
@@ -101,6 +104,7 @@ nnoremap <F7> :GundoToggle<CR>
 
 " NeoBundle 'scrooloose/nerdtree' {{{1 "
 let NERDTreeMinimalUI = 1
+nnoremap <F2> :NERDTreeToggle<CR>
 " 1}}} "
 
 
@@ -152,14 +156,13 @@ augroup end
 
 " pymode {{{
 let g:pymode_rope_completion = 1
-let g:pymode_rope_complete_on_dot = 1
+let g:pymode_rope_complete_on_dot = 0
 let g:pymode_rope_completion_bind = '<C-P>'
-let g:pymode_lint_write = 1
+let g:pymode_lint_write = 0
 let g:pymode_lint_on_fly = 0
-let g:pymode_rope = 1
-let g:pymode_rope_lookup_project = 1
 let g:pymode_virtualenv = 1
 let g:pymode_virtualenv_path = $VIRTUAL_ENV
+let g:pymode_rope = 1
 let g:pymode_rope_lookup_project = 0
 " pymode }}}
 
@@ -449,7 +452,7 @@ set pastetoggle=<F5>
 nnoremap <silent> <F6> :Complexity<CR>
 
 " errors
-map <F12> :SyntasticCheck<CR>
+nnoremap <F12> :PymodeLint<CR>
 
 nmap <Leader>im :VimpyCheckLine<CR>
 
