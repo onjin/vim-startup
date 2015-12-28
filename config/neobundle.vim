@@ -197,5 +197,30 @@ endif
 " }}}
 
 " }}}
-"
+" Operators {{{
+" ---------
+NeoBundleLazy 'kana/vim-operator-user'
+NeoBundleLazy 'kana/vim-operator-replace', {
+	\ 'depends': 'vim-operator-user',
+	\ 'on_map': [['nx', '<Plug>']]
+	\ }
+NeoBundleLazy 'rhysd/vim-operator-surround', {
+	\ 'depends': 'vim-operator-user',
+	\ 'on_map': '<Plug>'
+	\ }
+
+" }}}
+" Text objects {{{
+" ------------
+NeoBundleLazy 'kana/vim-textobj-user'
+NeoBundleLazy 'osyo-manga/vim-textobj-multiblock', {
+	\ 'depends': 'vim-textobj-user',
+	\ 'on_map': [['ox', '<Plug>']]
+	\ }
+NeoBundleLazy 'AndrewRadev/sideways.vim', {'on_map': [['ox', '<Plug>']]}
+NeoBundleLazy 'bkad/CamelCaseMotion', {
+	\ 'on_map': ['<Plug>CamelCaseMotion_w', '<Plug>CamelCaseMotion_b']
+	\ }
+" }}}
+
 " vim: set ts=2 sw=2 tw=80 noet :
