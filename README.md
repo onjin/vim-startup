@@ -8,8 +8,6 @@ VIM distribution bundled with plugins managed by *neobundle* for programming in:
 
  * python
  * php
- * clojure
- * scala
 
 also with:
  * useful dashboard / start screen with sessions handling
@@ -17,174 +15,125 @@ also with:
  * notes handling
 
 
-## Installation
 To fully work you need to install:
 
  * vim or vim-gtk
  * exuberant-ctags - for code navigation
 
 To work with python:
- * pip install flake8 pep8 pylint pyflakes  # for static code checking
+ * pip install flake8 pep8 pylint pyflakes jedi  # for static code checking
 
 To work with php:
  * php code sniffer  # for static code checking
 
 
-```bash
-
-    curl https://raw.githubusercontent.com/onjin/vim-startup/master/startup.sh | bash
-
-    # run vim or gvim
-    vim
-
-    # answer `y` to question for install plugins
-```
+## Install
+1. Clone `git clone git://github.com/onjin/vim-startup.git ~/.vim`
+2. Enter directory `cd ~/.vim`
+3. Run `make test` to make sure you have vim compiled with python and lua.
+4. Run `make install`
+5. Start `vim` or `gvim`, or `nvim`
 
 
-Upgrade:
+## Upgrade
 
-```bash
-   cd ~/.vim-startup
-   ./startup.sh upgrade
-```
-
-
-**vim-startup** installs at directory ~/.vim-startup and makes links for:
-
- * ~/.vimrc
- * ~/.vimrc.bundles
-
-your local modifications you can put at files:
-
- * ~/.vimrc.before - loaded at the beginnig before are plugins loaded; used to configure *vim-startup*
- * ~/.vimrc.bundles.local - to put your additional plugins
- * ~/.vimrc.local - loaded after all plugins; used to configure / reconfigure plugins and local settings
+Run `make update`
 
 ## Configuration
-
-To disable language plugins put in **~/.vimrc.before** proper settings:
-```vim
-
-    " to disable vim startify custom start screen
-    let g:vimstartup_no_startify = 1
-
-    " to disable python bundles and enhanced python syntax colorscheme
-    let g:vimstartup_no_python_bundles = 1
-
-    " to disable VimClojure
-    let g:vimstartup_no_clojure_bundles = 1
-
-    " to disable go-vim
-    let g:vimstartup_no_go_bundles = 1
-
-    " to disalbe vim-coffee-script
-    let g:vimstartup_no_coffeescript_bundles = 1
-
-    " to disable phpqa && phpdocumentor
-    let g:vimstartup_no_php_bundles = 1
-```
-
-
-
-## Help
-
- * F3        - strip trailing white spaces
- * F4        - tagbar toggle
- * Shift+F4  - unite outline
- * F5        - paste mode toggle
- * F6        - check complexity
- * F12       - check errors using syntastic plugin
-
-gui:
-
- * Shift+F6  - guifonts Anonymous Pro 12
- * Shift+F7  - guifonts Inconsolata 12
- * Shift+F8  - guifonts monospace 12
-
-shell:
-
- * ctrl+s    - run vim shell as pop
-
-unite:
-
- * ctrl+p    - search files
- * <space>p  - search files - nosplit
- * <space>/  - search in files
- * <space>s  - switch buffer
- * <space>y  - yank history
- * <space>l  - last edited files
-
-git (fugitive):
-
- * ,gs       - git status
- * ,gc       - git commit
- * ,gd       - git diff
- * ,gb       - git blame
-
-windows:
-
- * <ctr>+J   - switch && maximize window
- * <ctr>+K   - switch && maximize window
-
- * <ctr>+n   - hlsearch toggle
- * ,l        - set list toggle
-
-vimrc:
-
- * ,re       - edit ~/.vimrc
- * ,rt       - open ~/.vimrc in tab
- * ,rc       - reload ~/.vimrc
- * ,rh       - edit ~/.vimrc at mapping help
-
-buffers:
-
- * ,c        - close current buffer
- * ,wc       - write & close current buffer
- * ,d        - go previous buffer && close current
- * ,D        - close all buffers
- * ,,        - switch between last two buffers
+ * ~/.vimrc.bundles.local - to put your additional plugins
+ * ~/.vimrc.local - loaded after all plugins; used to configure / reconfigure plugins and local settings
 
 
 ## Plugins (bundles) included
 
-Plugins are in **~/.vimrc.bundles** file. If you want to install additional plugins, add them to **~/.vimrc.bundles.local** file.
+If you want to install additional plugins, add them to **~/.vimrc.bundles.local** file.
 
- * 'TFenby/python-mode' - with rope plugin bundled
- * 'altercation/vim-colors-solarized'
- * 'bcnice20/go-vim'
- * 'beyondwords/vim-twig'
- * 'blackboard.vim'  # 1.17  Enhanced version of the python syntax highlighting script
- * 'bling/vim-airline'
- * 'Conque-Shell'
- * 'jmcantrell/vim-virtualenv'
- * 'derekwyatt/vim-scala'
- * 'ervandew/supertab'
- * 'garybernhardt/pycomplexity', {'rtp': 'pycomplexity.vim/'}
- * 'honza/vim-snippets.git '
- * 'joonty/vim-phpqa.git'
- * 'jpalardy/vim-slime'
- * 'junegunn/goyo.vim'
- * 'kchmck/vim-coffee-script'
- * 'kien/rainbow_parentheses.vim'
- * 'mhinz/vim-startify'
- * 'michaeljsmith/vim-indent-object'
- * 'nathanaelkane/vim-indent-guides'
- * 'plasticboy/vim-markdown'  # Markdown Vim Mode
- * 'python.vim--Vasiliev'  # 1.17  Enhanced version of the python syntax highlighting script
- * 'scrooloose/nerdtree'
- * 'scrooloose/syntastic'
- * 'Shougo/unite-outline'
- * 'Shougo/unite.vim'
- * 'Shougo/vimproc'
- * 'Shougo/vimshell'
- * 'sjl/gundo.vim'
- * 'sotte/presenting.vim'  # A simple tool for presenting slides in vim based on text files.
- * 'Tagbar'
- * 'tpope/vim-fugitive'
- * 'tpope/vim-surround'
- * 'UltiSnips'
- * 'vcscommand.vim'
- * 'VimClojure'
- * 'vim-scripts/PDV--phpDocumentor-for-Vim'
- * 'xolox/vim-misc'
- * 'xolox/vim-notes'
+- 'airblade/vim-gitgutter'
+- 'beloglazov/vim-online-thesaurus'
+- 'benekastah/neomake'
+- 'bogado/file-line'
+- 'cespare/vim-toml'
+- 'chase/vim-ansible-yaml'
+- 'chrisbra/csv.vim'
+- 'chriskempson/base16-shell'
+- 'christoomey/vim-tmux-navigator'
+- 'davidhalter/jedi-vim'
+- 'ekalinin/Dockerfile.vim'
+- 'elzr/vim-json'
+- 'fatih/vim-go'
+- 'groenewege/vim-less'
+- 'guns/xterm-color-table.vim'
+- 'hail2u/vim-css3-syntax'
+- 'haya14busa/incsearch.vim'
+- 'haya14busa/vim-asterisk'
+- 'hynek/vim-python-pep8-indent'
+- 'itchyny/dictionary.vim'
+- 'itchyny/vim-cursorword'
+- 'itchyny/vim-gitbranch'
+- 'jelera/vim-javascript-syntax'
+- 'jiangmiao/simple-javascript-indenter'
+- 'joker1007/unite-pull-request'
+- 'junegunn/goyo.vim'
+- 'kana/vim-niceblock'
+- 'Konfekt/FastFold'
+- 'kshenoy/vim-signature'
+- 'lambdalisue/vim-findent'
+- 'lambdalisue/vim-gista'
+- 'lambdalisue/vim-gita'
+- 'matchit.zip'
+- 'mbbill/undotree'
+- 'mitsuhiko/vim-jinja'
+- 'mustache/vim-mustache-handlebars'
+- 'nathanaelkane/vim-indent-guides'
+- 'osyo-manga/unite-filetype'
+- 'osyo-manga/unite-quickfix'
+- 'othree/html5.vim'
+- 'rafi/awesome-vim-colorschemes'
+- 'rafi/vim-phpspec'
+- 'rafi/vim-tagabana'
+- 'rafi/vim-tinycomment'
+- 'rafi/vim-tinyline'
+- 'rafi/vim-unite-issue'
+- 'Raimondi/delimitMate'
+- 'rayburgemeestre/phpfolding.vim'
+- 'rcmdnk/vim-markdown'
+- 'rhysd/accelerated-jk'
+- 'rhysd/clever-f.vim'
+- 'scrooloose/nerdtree'
+- 'shawncplus/phpcomplete.vim'
+- 'Shougo/deoplete.nvim'
+- 'Shougo/echodoc.vim'
+- 'Shougo/junkfile.vim'
+- 'Shougo/neco-syntax'
+- 'Shougo/neco-vim'
+- 'Shougo/neocomplete'
+- 'Shougo/neoinclude.vim'
+- 'Shougo/neomru.vim'
+- 'Shougo/neopairs.vim'
+- 'Shougo/neosnippet.vim'
+- 'Shougo/neossh.vim'
+- 'Shougo/unite-build'
+- 'Shougo/unite-outline'
+- 'Shougo/unite.vim'
+- 'Shougo/vimfiler.vim'
+- 'Shougo/vimproc.vim'
+- 'Shougo/vinarise.vim'
+- 'sotte/presenting.vim'
+- 'StanAngeloff/php.vim'
+- 't9md/vim-choosewin'
+- 'tacroe/unite-mark'
+- 'Tagbar'
+- 'ternjs/tern_for_vim'
+- 'terryma/vim-expand-region'
+- 'thinca/vim-guicolorscheme'
+- 'thinca/vim-localrc'
+- 'thinca/vim-prettyprint'
+- 'thinca/vim-quickrun'
+- 'thinca/vim-unite-history'
+- 'tsukkee/unite-tag'
+- 'tyru/caw.vim'
+- 'ujihisa/unite-colorscheme'
+- 'vim-ruby/vim-ruby'
+- 'vimwiki/vimwiki'
+- 'xolox/vim-misc'
+- 'xolox/vim-notes'
