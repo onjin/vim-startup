@@ -2,6 +2,12 @@
 " Key Bindings
 "---------------------------------------------------------
 
+" Unite prefix
+nnoremap [unite]  <Nop>
+xnoremap [unite]  <Nop>
+nmap     f [unite]
+xmap     f [unite]
+
 " pasting
 set pastetoggle=<F5>
 

@@ -8,6 +8,7 @@ if neobundle#tap('unite.vim') "{{{
 	nnoremap <silent> [unite]r   :<C-u>UniteResume -no-start-insert -force-redraw<CR>
 	nnoremap <silent> [unite]b   :<C-u>Unite buffer file_mru bookmark<CR>
 	nnoremap <silent> [unite]f   :<C-u>Unite file_rec/async<CR>
+	nnoremap <silent> <C-p>   :<C-u>Unite file_rec/async<CR>
 	nnoremap <silent> [unite]i   :<C-u>Unite file_rec/git<CR>
 	nnoremap <silent> [unite]g   :<C-u>Unite grep:.<CR>
 	nnoremap <silent> [unite]u   :<C-u>Unite source<CR>
