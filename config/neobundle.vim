@@ -19,6 +19,7 @@ NeoBundle 'thinca/vim-localrc'
 NeoBundle 'xolox/vim-misc'  " required by 'xolox/vim-notes'
 NeoBundle 'xolox/vim-notes'
 NeoBundle 'Tagbar'
+NeoBundle 'scrooloose/nerdtree'
 
 
 " LAZY LOADING from here on!
@@ -60,8 +61,10 @@ NeoBundleLazy 'fatih/vim-go', {
 " }}}
 " Commands {{{
 " --------
-NeoBundleLazy 'sotte/presenting.vim'
-NeoBundleLazy 'scrooloose/nerdtree'
+NeoBundleLazy 'sotte/presenting.vim', {
+	\ 'on_ft': ['markdown', ],
+	\ 'on_cmd': ['PresentingStart', ]
+	\ }
 NeoBundleLazy 'Shougo/vimfiler.vim', {
 	\ 'depends': 'Shougo/unite.vim',
 	\ 'on_map': '<Plug>',
