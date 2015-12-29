@@ -9,7 +9,7 @@ Configurable VIM distribution bundled with plugins managed by **NeoBundle** mana
 Final layout inspired by https://github.com/rafi/vim-config
 
 ## Screenshot
-![vim startup script](http://dl.dropbox.com/u/185133/vim-startup/screenshot.jpg)
+![vim startup script](https://raw.githubusercontent.com/onjin/vim-startup/master/screenshot.jpg)
 
 ## Install
 1. Clone `git clone git://github.com/onjin/vim-startup.git ~/.vim`
