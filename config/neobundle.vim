@@ -20,7 +20,7 @@ NeoBundle 'xolox/vim-misc'  " required by 'xolox/vim-notes'
 NeoBundle 'xolox/vim-notes'
 NeoBundle 'Tagbar'
 NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'xolo/vim-session'
+NeoBundle 'xolox/vim-session'
 NeoBundle 'mhinz/vim-startify'
 
 

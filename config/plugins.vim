@@ -676,7 +676,7 @@ endif
 "}}}
 
 if neobundle#tap('vim-notes') "{{{
-	let g:notes_directories = ['~/Dropbox/Notes', '~/Dropbox/Shared.Notes']
+	let g:notes_directories = ['~/.cache/vim/notes']
 	call neobundle#untap()
 endif "}}}
 

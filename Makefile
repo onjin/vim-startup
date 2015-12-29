@@ -12,7 +12,7 @@ help:
 
 
 install:
-	mkdir -p "$(XDG_CACHE_HOME)/vim/"{backup,session,swap,tags,undo,view}; \
+	mkdir -p "$(XDG_CACHE_HOME)/vim/"{backup,session,swap,tags,undo,view,notes}; \
 	$(vim) --cmd 'let g:vim_installing = 1' +NeoBundleInstall +q
 
 update:
