@@ -680,4 +680,61 @@ if neobundle#tap('vim-notes') "{{{
 	call neobundle#untap()
 endif "}}}
 
+if neobundle#tap('vim-startify') "{{{
+
+	autocmd User Startified setlocal cursorline
+
+	let g:startify_enable_special         = 0
+	let g:startify_files_number           = 8
+	let g:startify_relative_path          = 1
+	let g:startify_change_to_dir          = 1
+	let g:startify_change_to_vcs_root     = 0
+	let g:startify_session_autoload       = 1
+	let g:startify_session_persistence    = 1
+	let g:startify_session_delete_buffers = 1
+	let g:startify_session_dir = '~/.cache/vim/session/'
+
+	let g:startify_list_order = [
+				\ ['   LRU:'],
+				\ 'files',
+				\ ['   LRU within this dir:'],
+				\ 'dir',
+				\ ['   Sessions:'],
+				\ 'sessions',
+				\ ['   Bookmarks:'],
+				\ 'bookmarks',
+				\ ]
+
+	let g:startify_skiplist = [
+				\ 'COMMIT_EDITMSG',
+				\ ]
+
+	let g:startify_bookmarks = [
+				\ { 'l': '~/.vimrc.local' },
+				\ { 'p': '~/.vimrc.bundles.local' },
+				\ { 'v': '~/.vim/' },
+				\ ]
+
+	let g:startify_custom_footer =
+				\ ['', "   Vim is charityware. Please read ':help uganda'.", '']
+
+	let g:startify_custom_header = [
+				\'   Put:',
+				\'    let g:startify_custom_header = "some"',
+				\'   in `~/.vimrc.local` file to change header',
+				\''
+				\]
+
+	hi StartifyBracket ctermfg=240
+	hi StartifyFile    ctermfg=147
+	hi StartifyFooter  ctermfg=240
+	hi StartifyHeader  ctermfg=114
+	hi StartifyNumber  ctermfg=215
+	hi StartifyPath    ctermfg=245
+	hi StartifySlash   ctermfg=240
+	hi StartifySpecial ctermfg=240
+
+	call neobundle#untap()
+endif " }}}
+
 " vim: set ts=2 sw=2 tw=80 noet :

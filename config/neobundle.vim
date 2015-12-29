@@ -20,6 +20,8 @@ NeoBundle 'xolox/vim-misc'  " required by 'xolox/vim-notes'
 NeoBundle 'xolox/vim-notes'
 NeoBundle 'Tagbar'
 NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'xolo/vim-session'
+NeoBundle 'mhinz/vim-startify'
 
 
 " LAZY LOADING from here on!
@@ -43,6 +45,7 @@ NeoBundleLazy 'chrisbra/csv.vim', {'on_ft': 'csv'}
 NeoBundleLazy 'hynek/vim-python-pep8-indent', {'on_ft': 'python'}
 NeoBundleLazy 'elzr/vim-json', {'on_ft': 'json'}
 NeoBundleLazy 'cespare/vim-toml', {'on_ft': 'toml'}
+NeoBundleLazy 'PotatoesMaster/i3-vim-syntax', {'on_ft': 'i3'}
 NeoBundleLazy 'ekalinin/Dockerfile.vim', {'on_ft': 'Dockerfile'}
 NeoBundleLazy 'vim-ruby/vim-ruby', {'on_ft': 'ruby', 'on_map': '<Plug>'}
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'on_ft': 'javascript'}
