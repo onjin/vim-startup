@@ -61,7 +61,9 @@ if neobundle#load_cache()
 endif
 call neobundle#local(expand('$VIMPATH/dev'), {})
 call s:source_file('plugins.vim')
-call s:source_home_file('.vimrc.bundles.local')
+if filereadable(expand('$HOME/.vimrc.bundles.local'))
+	call s:source_home_file('.vimrc.bundles.local')
+endif
 call neobundle#end()
 " }}}
 
@@ -82,7 +84,9 @@ call s:source_file('utils.vim')
 call s:source_file('bindings.vim')
 call s:source_file('tabline.vim')
 
-call s:source_home_file('.vimrc.local')
+if filereadable(expand('$HOME/.vimrc.local'))
+	call s:source_home_file('.vimrc.local')
+endif
 
 if has('nvim')
 	call s:source_file('neovim.vim')
