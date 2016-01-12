@@ -364,7 +364,7 @@ if neobundle#tap('jedi-vim') "{{{
 	let g:jedi#auto_vim_configuration = 0
 	let g:jedi#smart_auto_mappings = 0
 	let g:jedi#use_tag_stack = 0
-	let g:jedi#popup_select_first = 0
+	let g:jedi#popup_select_first = 1
 	let g:jedi#use_splits_not_buffers = 'right'
 	let g:jedi#completions_command = ''
 	let g:jedi#goto_command = '<leader>d'

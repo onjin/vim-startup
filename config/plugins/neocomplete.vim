@@ -15,7 +15,7 @@ let g:neocomplete#enable_camel_case = 1
 let g:neocomplete#enable_fuzzy_completion = 1
 
 " Lengths of strings to start completion
-let g:neocomplete#auto_completion_start_length = 2
+let g:neocomplete#auto_completion_start_length = 5
 let g:neocomplete#manual_completion_start_length = 0
 let g:neocomplete#min_keyword_length = 3
 
