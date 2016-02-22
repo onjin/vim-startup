@@ -41,6 +41,7 @@ augroup MyAutoCmd
 		\ else |
 		\   setlocal omnifunc= |
 		\ endif
+	autocmd BufWritePost ~/.vim/doc/* :helptags ~/.vim/doc
 
 augroup END
 
