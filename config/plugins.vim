@@ -5,11 +5,13 @@
 if neobundle#tap('unite.vim') "{{{
 	let g:unite_data_directory = $VARPATH.'/unite'
 	let g:unite_source_history_yank_enable = 1
+	" [unite] == f
 	nnoremap <silent> [unite]r   :<C-u>UniteResume -no-start-insert -force-redraw<CR>
 	nnoremap <silent> [unite]b   :<C-u>Unite buffer file_mru bookmark<CR>
 	nnoremap <silent> [unite]f   :<C-u>Unite file_rec/async<CR>
 	nnoremap <silent> <C-p>   :<C-u>Unite file_rec/async<CR>
 	nnoremap <silent> [unite]i   :<C-u>Unite file_rec/git<CR>
+	nnoremap <silent> [unite]y   :<C-u>Unite history/yank<CR>
 	nnoremap <silent> [unite]g   :<C-u>Unite grep:.<CR>
 	nnoremap <silent> [unite]u   :<C-u>Unite source<CR>
 	nnoremap <silent> [unite]t   :<C-u>Unite tag<CR>
@@ -60,8 +62,8 @@ if neobundle#tap('unite.vim') "{{{
 		imap <silent><buffer> <C-k> <Plug>(unite_select_previous_line)
 		nmap <silent><buffer> '     <Plug>(unite_toggle_mark_current_candidate)
 		nmap <silent><buffer> e     <Plug>(unite_do_default_action)
-		nmap <silent><buffer><expr> sv unite#do_action('split')
-		nmap <silent><buffer><expr> sg unite#do_action('vsplit')
+		nmap <silent><buffer><expr> ss unite#do_action('split')
+		nmap <silent><buffer><expr> sv unite#do_action('vsplit')
 		nmap <silent><buffer><expr> st unite#do_action('tabopen')
 		nnoremap <silent><buffer> <Tab>  <C-w>w
 		nmap <buffer> q             <Plug>(unite_exit)

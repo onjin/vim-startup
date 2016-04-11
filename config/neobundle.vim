@@ -14,6 +14,7 @@ NeoBundle 'christoomey/vim-tmux-navigator'
 NeoBundle 'rafi/vim-tinyline'
 NeoBundle 'rafi/vim-tagabana'
 NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'Shougo/neoyank.vim'
 NeoBundle 'bogado/file-line'
 NeoBundle 'thinca/vim-localrc'
 NeoBundle 'xolox/vim-misc'  " required by 'xolox/vim-notes'
@@ -22,6 +23,10 @@ NeoBundle 'Tagbar'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'xolox/vim-session'
 NeoBundle 'mhinz/vim-startify'
+" put here because of problems with lazy loading unite-outline
+NeoBundle 'Shougo/unite-outline'
+NeoBundle 'tacroe/unite-mark'
+NeoBundle 'tsukkee/unite-tag'
 
 
 " LAZY LOADING from here on!
@@ -179,13 +184,8 @@ NeoBundleLazy 'ujihisa/unite-colorscheme'
 NeoBundleLazy 'osyo-manga/unite-filetype'
 NeoBundleLazy 'thinca/vim-unite-history'
 NeoBundleLazy 'Shougo/unite-build'
-NeoBundleLazy 'Shougo/unite-outline'
-NeoBundleLazy 'tacroe/unite-mark'
 NeoBundleLazy 'Shougo/junkfile.vim', {'on_unite': 'junkfile'}
 NeoBundleLazy 'Shougo/neossh.vim', {'on_ft': 'vimfiler', 'sources': 'ssh'}
-NeoBundleLazy 'tsukkee/unite-tag', {
-	\ 'on_unite': ['tag', 'tag/file', 'tag/include']
-	\ }
 NeoBundleLazy 'osyo-manga/unite-quickfix', {
 	\ 'on_unite': ['quickfix', 'location_list']
 	\ }
