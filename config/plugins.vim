@@ -62,8 +62,8 @@ if neobundle#tap('unite.vim') "{{{
 		imap <silent><buffer> <C-k> <Plug>(unite_select_previous_line)
 		nmap <silent><buffer> '     <Plug>(unite_toggle_mark_current_candidate)
 		nmap <silent><buffer> e     <Plug>(unite_do_default_action)
-		nmap <silent><buffer><expr> ss unite#do_action('split')
-		nmap <silent><buffer><expr> sv unite#do_action('vsplit')
+		nmap <silent><buffer><expr> sh unite#do_action('split')
+		nmap <silent><buffer><expr> ss unite#do_action('vsplit')
 		nmap <silent><buffer><expr> st unite#do_action('tabopen')
 		nnoremap <silent><buffer> <Tab>  <C-w>w
 		nmap <buffer> q             <Plug>(unite_exit)
