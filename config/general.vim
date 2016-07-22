@@ -105,7 +105,7 @@ augroup END
 " Tabs and Indents {{{
 " ----------------
 set textwidth=80    " Text width maximum chars before wrapping
-set noexpandtab     " Do not expand tabs to spaces as default
+set expandtab       " Do expand tabs to spaces as default
 set tabstop=2       " The number of spaces a tab is
 set softtabstop=2   " While performing editing operations
 set smarttab        " Tab insert blanks according to 'shiftwidth'
