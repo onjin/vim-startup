@@ -514,7 +514,9 @@ endif
 if neobundle#tap('vim-findent') "{{{
 	augroup findent
 		autocmd!
-		autocmd BufRead *.py,*.js call s:setupFindent()
+		if !has('nvim') "{{{
+			autocmd BufRead *.py,*.js call s:setupFindent()
+		endif "}}}
 	augroup END
 
 	function! s:setupFindent()
@@ -561,13 +563,15 @@ if neobundle#tap('vim-indent-guides') "{{{
 
 	nmap <silent><Leader>i :<C-u>IndentGuidesToggle<CR>
 
-	function! neobundle#hooks.on_post_source(bundle)
-		autocmd MyAutoCmd BufEnter *.py,*.js if &expandtab
-			\ |   IndentGuidesEnable
-			\ | else
-			\ |   IndentGuidesDisable
-			\ | endif
-	endfunction
+	if !has('nvim')
+		function! neobundle#hooks.on_post_source(bundle)
+			autocmd MyAutoCmd BufEnter *.py,*.js if &expandtab
+				\ |   IndentGuidesEnable
+				\ | else
+				\ |   IndentGuidesDisable
+				\ | endif
+		endfunction
+	endif
 	call neobundle#untap()
 endif
 
