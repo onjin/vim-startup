@@ -1,5 +1,11 @@
 # vim-startup
 
+**Note:** I've started using neovim - and because didn't want to break anything in this project for people already using it - so my current vim config is in the new repository:
+ * https://github.com/onjin/.vim - `vim`  and `neovim` config with intelissense support by `coc.vim`
+ * https://github.com/onjin/.vimrc-minimal - tiny `vim` configuration but with `plugin manager` and `fzf.vim`
+
+<hr>
+
 Configurable VIM distribution bundled with plugins managed by **NeoBundle** manager also with:
  * configurable by `~/.vimrc.local` and `~/.vimrc.bundles.local`
  * useful dashboard with bookmarks and sessions handling ([vim-startify][vim-startify])
