@@ -1,7 +1,7 @@
 # vim-startup
 
 **Note:** I've started using neovim - and because didn't want to break anything in this project for people already using it - so my current vim config is in the new repository:
- * https://github.com/onjin/.vim - `vim`  and `neovim` config with intelissense support by `coc.vim`
+ * https://github.com/onjin/nvim - `neovim` 100% `lua` config with intellisense support by native `LSP` support
  * https://github.com/onjin/.vimrc-minimal - tiny `vim` configuration but with `plugin manager` and `fzf.vim`
 
 <hr>
